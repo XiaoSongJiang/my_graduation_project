@@ -1,0 +1,111 @@
+<layout name="Layout/layout" />
+<form method="post" action="" name="listForm">
+    <div class="list-div" id="listDiv">
+        <table width="100%" cellspacing="1" cellpadding="2" id="list-table">
+            <tr>
+                <th>分类名称</th>
+               	<th >上级分类的ID，0：代表顶级</th>	
+                <th>操作</th>
+            </tr>
+            <foreach name="category_data" item="val">
+            <tr align="center" class="<{$val.parent_id}>">
+                <td align="left" class="first-cell" >
+                <{$val.level|str_repeat='&nbsp;&nbsp;&nbsp;&nbsp;',###}>
+                <img src="__PUBLIC__/Admin/Images/menu_minus.gif" width="9" height="9" border="0" style="margin-left:0em" onclick="rowClicked(this)"/>
+                <span parent_id="<{$val.parent_id}>"><a href="javascript:void(0)"><{$val.cate_name}></a></span>
+                </td>
+                <td width="15%" align="center"><span><{$val.parent_id}></span></td>
+                <td width="30%" align="center">
+                <a href="__CONTROLLER__/foodsCateEdit/cate_id/<{$val.cate_id}>">编辑</a> |
+                <a href="__CONTROLLER__/foodsCateDelete/cate_id/<{$val.cate_id}>" title="移除" onclick="if(confirm('确认删除?')){return true;}return false;">移除</a>
+                </td>
+            </tr>
+            </foreach>
+        </table>
+    </div>
+</form>
+<script>
+			var imgPlus = new Image();
+			imgPlus.src = "__PUBLIC__/Admin/Images/menu_plus.gif";
+			function rowClicked(obj)
+			{
+				  // 当前图像
+				  img = obj;
+				  // 取得上二级tr>td>img对象
+				  obj = obj.parentNode.parentNode;
+				  // 整个分类列表表格
+				  var tbl = document.getElementById("list-table");
+				  // 当前分类级别
+				  var lvl = parseInt(obj.className);
+				 // alert(lvl);
+				 //判断当前点击图标是 '+' 还是 '-'
+				 var ico = img.src.indexOf('menu_minus.gif'); //为0表示不是menu_minus.gif  menu_minus.gif => '-'   menu_plus.gif  =>  '+'
+				
+				 if(ico>=0){
+						  for (var i=0; i<tbl.rows.length;i++ )
+							  {
+								  var row = tbl.rows[i];
+								  // 找到当前行
+								  if (row == obj)
+								  {
+									 
+									  for (var j=i; j < tbl.rows.length;j++ )
+									  {
+										 
+										  
+										   img.src = imgPlus.src;
+										  if(j+1 >= tbl.rows.length){
+												 return ; 
+											  }
+										  if(parseInt(tbl.rows[j+1].className) > parseInt(row.className)){
+											
+											
+											
+											tbl.rows[j+1].style.display='none';
+											
+										  }
+										  else{
+											
+											
+											return ;
+										  }
+										  
+										  
+									  }
+									  
+								  }
+								  
+							  }
+					//obj.cells[0].childNodes[0].src =  'C:/MyServ/www/ele_market/Public/Admin/Images/menu_minus.gif';	
+				 }else{
+						var start = obj.rowIndex;
+						
+						obj.cells[0].childNodes[1].src = '__PUBLIC__/Admin/Images/menu_minus.gif';
+						for (i = start; i < tbl.rows.length; i++)
+						  {
+							  if(i+1 >= tbl.rows.length){
+								 return ; 
+							  }
+							  if(parseInt(tbl.rows[i+1].className) > lvl){
+								    tbl.rows[i+1].cells[0].childNodes[1].src = '__PUBLIC__/Admin/Images/menu_minus.gif';
+									tbl.rows[i+1].style.display='table-row';
+							  }
+								else{
+									
+									return ;
+							  }
+						  }
+					  }
+				 
+			
+				  
+			}	 
+			$(function($) {
+				 $("span").each(function(v){
+					 if($(this).attr("parent_id") == "0"){
+						 $(this).prev().trigger("click");
+					 }
+				 });
+				
+			});
+</script>

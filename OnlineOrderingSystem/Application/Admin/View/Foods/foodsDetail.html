@@ -1,0 +1,260 @@
+<layout name="Layout/layout" />
+<form method="post" action="__SELF__" enctype="multipart/form-data">
+	<div id="tabbar-div">
+        <p>
+            <span class="tab-front">基本信息</span>
+            <span class="tab-back">菜品描述</span>
+            <span class="tab-back">会员价格</span>
+            <span class="tab-back">菜品相册</span>
+        </p>
+    </div>
+    <div id="tabbody-div">
+	    <form name="main_form" method="POST" action="__SELF__" enctype="multipart/form-data" >
+	        <!-- 基本信息 -->
+	    	<table class="table_content" cellspacing="1" cellpadding="3" width="100%">
+	            <tr>
+	                <td class="label">菜品名称：</td>
+	                <td>
+	                    <input type="text" name="foods_name" value="<{$foods_info.foods_name}>" readonly="readonly"/>
+	                    
+	                </td>
+	            </tr>
+	            <tr>
+	                <td class="label">菜品分类：</td>
+	                <td>
+	                    <select name="cate_id" class="select1" >
+			    			<option value="">选择分类</option>
+			    			<volist name="cate_info" id="val">
+			    				<option parent_id="<{$val.parent_id}>" <if condition="$foods_info['cate_id'] eq $val['cate_id']">selected="selected"</if> value="<{$val.cate_id}>"><{$val.level|str_repeat="&nbsp;&nbsp;&nbsp;&nbsp;",###}><{$val.cate_name}></option>
+			    			</volist>
+			    		</select>
+			    		
+	                </td>
+	            </tr>
+	            <tr>
+	                <td class="label">扩展分类：</td>
+	                <td>
+	                <if condition="empty($foodsextcate_info)">
+	                	无扩展分类
+	                	<else />
+		                	<volist name="foodsextcate_info" id="v">
+		                    	 <select name="ext_cate_id[]" class="select1">
+					    			<option value="">选择分类</option>
+					    			<volist name="cate_info" id="val">
+					    				<option parent_id="<{$val.parent_id}>" <if condition="$v['cate_id'] eq $val['cate_id']">selected="selected"</if> value="<{$val.cate_id}>"><{$val.level|str_repeat="&nbsp;&nbsp;&nbsp;&nbsp;",###}><{$val.cate_name}></option>
+					    			</volist>
+				    		</select>
+		                    </volist>
+	                </if>
+	                    
+	                   
+	                </td>
+	            </tr>
+
+	            <tr>
+	                <td class="label">本店价：</td>
+	                <td>
+	                    ￥ <input  type="text" size="10" name="shop_price" value="<{$foods_info.shop_price}>" readonly="readonly"/> 元
+	                </td>
+	            </tr>
+	            <tr>
+	                <td class="label">赠送积分：</td>
+	                <td>
+	                    <input  type="text" name="points" value="<{$foods_info.points}>" readonly="readonly"/>
+	                    
+	                </td>
+	            </tr>
+	            <tr>
+	                <td class="label">赠送经验值：</td>
+	                <td>
+	                    <input  type="text" name="xp" value="<{$foods_info.xp}>" readonly="readonly"/>
+	                  
+	                </td>
+	            </tr>
+	            <tr>
+	                <td class="label">
+	                <input 
+	                value="<{$foods_info.is_promote}>" name="is_promote" 
+	                onclick="if($(this).attr('checked')) {$('.promote_price').removeAttr('disabled');$(this).val('1');}else {$(this).val(0);$('.promote_price').attr('disabled', 'disabled');}" type="checkbox" />促销价：</td>
+	                <td>
+	                                                   ￥<input class="promote_price" disabled="disabled" type="text" name="promote_price" readonly="readonly" value="<{$foods_info.promote_price}>" />
+	                </td>
+	            </tr>
+	            <tr>
+	                <td class="label">促销开始时间：</td>
+	                <td>
+	                    <input class="promote_price" disabled="disabled" id="promote_start_time" type="text" name="promote_start_time" readonly="readonly" value="<{$foods_info.promote_start_time|date='Y-m-d',###}>" />
+	                </td>
+	            </tr>
+	            <tr>
+	                <td class="label">促销结束时间：</td>
+	                <td>
+	                    <input class="promote_price" disabled="disabled" id="promote_end_time" type="text" name="promote_end_time" readonly="readonly" value="<{$foods_info.promote_end_time|date='Y-m-d',###}>"/>
+	                </td>
+	            </tr>
+	            <tr>
+	                <td class="label">菜品典型图片：</td>
+	                <td>
+	                	
+	                	<span><{$foods_info.logo|showImage=###,80,80}><span>
+	                </td>
+	            </tr>
+	            <tr>
+	                <td class="label">是否热卖：</td>
+	                <td>
+	                	<input type="radio" name="is_hot" disabled="disabled" value="1" <if condition='$foods_info.is_hot eq 1'>checked='checked' </if>/>是
+						<input type="radio" name="is_hot" disabled="disabled" value="0"  <if condition='$foods_info.is_hot eq 0'>checked='checked' </if> />否
+	                </td>
+	            </tr>
+	            <tr>
+	                <td class="label">是否新品：</td>
+	                <td>
+	                	<input type="radio" name="is_new" disabled="disabled" value="1" <if condition='$foods_info.is_new eq 1'>checked='checked' </if> />是
+						<input type="radio" name="is_new" disabled="disabled" value="0"  <if condition='$foods_info.is_new eq 0'>checked='checked' </if> />否
+	                </td>
+	            </tr>
+	            <tr>
+	                <td class="label">是否精品：</td>
+	                <td>
+	                	<input type="radio" name="is_best" disabled="disabled" value="1" <if condition='$foods_info.is_best eq 1'>checked='checked' </if>/>是
+						<input type="radio" name="is_best" disabled="disabled" value="0"  <if condition='$foods_info.is_best eq 0'>checked='checked' </if> />否
+	                </td>
+	            </tr>
+	            <tr>
+	                <td class="label">是否售卖：</td>
+	                <td>
+	                	<input type="radio" name="is_on_sale" disabled="disabled" value="1" <if condition='$foods_info.is_on_sale eq 1'>checked='checked' </if>/>售卖中
+						<input type="radio" name="is_on_sale" disabled="disabled" value="0"  <if condition='$foods_info.is_on_sale eq 0'>checked='checked' </if> />已售完
+	                </td>
+	            </tr>
+	            <tr>
+	                <td class="label">菜品库存材料：</td>
+	                <td>
+	                	<input type="text" name="inventory" readonly="readonly" id="inventory" value="<{$foods_info.inventory}>"/>
+	                	
+	                </td>
+	            </tr>
+	            <tr>
+	                <td class="label">排序数字：</td>
+	                <td>
+	                    <input size="5" type="text" readonly="readonly" name="sort_num" value="<{$foods_info.sort_num}>" />
+	                </td>
+	            </tr>
+	        </table>
+	        <!-- 描述 -->
+	    	<table class="table_content" cellspacing="1" cellpadding="3" width="100%" style="display:none;">
+	            <tr>
+	            	<td>
+	                	<textarea id="foods_desc" name="foods_desc"><{$foods_info.foods_desc}></textarea>
+	                </td>
+	            </tr>
+	    	</table>
+	    	 <!-- 会员价格 -->
+	    	<table class="table_content" cellspacing="1" cellpadding="3" width="100%" style="display:none;" >
+	    		<tr><td style="font-size:18px;font-weight:bold;">会员价格（如果没有填会员价格就按折扣率计算价格，如果填了就按填的价格算，不再打折）</td></tr>
+	    		<volist name="memberlvl_info" id="val">
+	            <tr>
+	            	<td ><span style="width:100px;float: left"><{$val.level_name}>(<{$val['rate']/10}>折)：</span>￥ <input type="text" readonly="readonly" name="member_price[<{$val.level_id}>]"
+	            	<volist name='memberprice_info' id='v'>
+		            	<if condition='$v["level_id"] eq $val["level_id"]'>
+		            		value="<{$v.price}>"
+		            	</if>
+	            	</volist>
+	            	/></td>
+	            </tr>
+	            </volist>
+	    	</table>
+	    	<table class="table_content" cellspacing="1" cellpadding="3" width="100%" style="display:none;" >
+	           <tr>
+	           <td>
+	           		<ul>
+		           		<volist name="foodspics_info" id="val">
+		           			<li>
+			           			
+			           			<{$val.pic|showImage='100','100'}><br />
+			           			
+		           			</li>
+		           		</volist>
+	           		</ul>
+	           </td>
+	           </tr>
+	          
+	    	</table>
+	    	
+	</div>
+</form>
+<script type="text/javascript">
+
+	$("div#tabbar-div p span").click(function(){
+		//选中的span的索引
+		var tabbar_i = $(this).index();
+		//根据tabbar_i确定显示第几个table
+		$(".table_content").eq(tabbar_i).show();
+		//隐藏其他table
+		$(".table_content").eq(tabbar_i).siblings(".table_content").hide();
+		// 把原来选中的取消选中状态
+		$(".tab-front").removeClass("tab-front").addClass("tab-back");
+		// 切换点击的按钮的样式为选中状态
+		$(this).removeClass("tab-back").addClass("tab-front");
+	});
+	//ajax删除商品相册
+	$(".delimage").click(function(){
+		if(confirm("确定删除此图片么?")){
+			var pic_id = $(this).attr("pic_id");
+			li = $(this).parent();
+			$.ajax({
+				type:"GET",
+				url:"__CONTROLLER__/deletePicByIdAjax/pic_id/"+pic_id,
+				success:function(data){
+					if(data==1){
+						li.remove();
+						
+					}else{
+						alert("删除失败!");
+					}
+				}
+			});
+		}
+		
+	});
+	
+UE.getEditor('foods_desc', {
+	"initialFrameWidth" : "100%",  // 宽
+	"initialFrameHeight" : 350,    // 高
+	"maximumWords" : 50000         // 最可以输入的字符数
+});
+$("#promote_start_time").datepicker({ dateFormat: "yy-mm-dd" });
+$("#promote_end_time").datepicker({ dateFormat: "yy-mm-dd" });
+
+//设置菜品库存
+$("input[name='is_on_sale']").click(function(){
+	if($(this).attr("checked") && $(this).val() == 0){
+		$("#inventory").val("0");
+		$("#inventory").attr("disabled","disabled");
+	}else{
+		$("#inventory").val("");
+		$("#inventory").removeAttr("disabled");
+	}
+});
+//初始时判断促销价选中状态
+var is_promote = $("input[name='is_promote']");
+if(is_promote.val() == "1"){
+	is_promote.attr("checked","checked");
+	$('.promote_price').removeAttr('disabled');
+}
+	
+	$(".select1").change(function(){
+		
+		if($(this).find("option:selected").attr("parent_id") == 0){
+			alert("不能选择顶级分类！");
+			
+			//return false;
+		}
+	});
+	$("form").submit(function(){
+		if($(".select1").find("option:selected").attr("parent_id") == 0){
+			alert("你有选中菜品顶级分类被选中,无法提交");
+			return false;
+		}
+	});
+</script>

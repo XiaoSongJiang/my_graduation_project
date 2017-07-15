@@ -1,0 +1,15 @@
+/**
+ * 底部导航css
+ */
+.bottomnav{
+	
+	border: 1px solid #ddd; 
+	border-radius: 5px; 
+	
+	padding: 5px 0; 
+	background: #fefefe;
+	text-align:center;
+}
+
+
+

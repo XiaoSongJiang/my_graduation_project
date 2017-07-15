@@ -1,0 +1,105 @@
+@CHARSET "UTF-8";
+/*
+餐厅详情css
+*/
+
+.restaurant_name{
+	width:100px;
+	height:40px;
+	font-weight:bold;
+	text-align: center;
+	line-height: 40px;
+	font-size: 17px;
+	margin-left: -80px;
+}
+#sales_top{
+	display:inline-block;
+	overflow:visible;
+	min-height: 258px;
+	height: auto;
+}
+#sales_top dl{
+	margin-top: 5px;
+}
+
+#sales_top .first{
+	padding-top: 7px;
+	border-top: 1px dotted #dddddd;
+}
+#foods_all{
+	width:870px;
+	height: 40px;
+	border: 1px solid #E7E7E7;
+	margin-top:10px;
+	
+	line-height: 40px;
+	padding-left: 20px;
+	font-size: 15px;
+	font-weight: bold;
+	background: #F3F3F3;
+}
+#foods_all_detail{
+	
+	width:890px;
+	height:180px;
+	border: 1px solid #E7E7E7;
+}
+
+#foods_all_detail ul li{
+	
+	width: 170px;
+	float: left;
+	display: inline;
+	text-align: center;
+	margin-bottom:20px;
+}
+#foods_all_detail ul img {
+	width: 130px;
+	height: 130px;
+}
+
+#foods_all_detail ul li dd {
+	height: 20px;
+	line-height: 20px;
+}
+
+#foods_all_detail ul li span {
+	color: #999;
+}
+.pages {
+	text-align: center;
+}
+
+.pages a, .pages span {
+	display: inline-block;
+	padding: 2px 5px;
+	margin: 0 1px;
+	border: 1px solid #f0f0f0;
+	border-radius: 3px;
+}
+
+.pages a, .pages li {
+	display: inline-block;
+	list-style: none;
+	text-decoration: none;
+	color: #192E32;
+}
+
+.pages a.first, .pages a.prev, .pages a.next, .pages a.end {
+	margin: 0;
+	
+}
+
+.pages a:hover {
+	background: red;
+}
+
+
+.pages span.current {
+	background: #50A8E6;
+	color: #FFF;
+	font-weight: 700;
+	border-color: #50A8E6;
+}
+
+

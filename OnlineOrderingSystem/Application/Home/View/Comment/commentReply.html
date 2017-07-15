@@ -1,0 +1,72 @@
+<layout name="Layout/layout" />
+<style>
+.star {
+	display: inline-block;
+	width: 75px;
+	height: 14px;
+	margin: 1px 5px 0 0;
+	background: url("__PUBLIC__/Home/images/newicon.png") -109px -239px no-repeat;
+}
+
+.star4 {
+	background-position: -124px -239px;
+}
+
+.star3 {
+	background-position: -139px -239px;
+}
+
+.star2 {
+	background-position: -154px -239px;
+}
+
+.star1 {
+	background-position: -169px -239px;
+}
+</style>
+<include file="Layout/header" />
+<div class="main w1210 mt10 bc">
+<div style="float: left ; border: 1px;padding: 10px;">
+<form method="post" action="__SELF__" name="form" enctype="multipart/form-data">
+<div style="width: 750px;height: 100px;background: #F7F7F7;margin: 10px;">
+	<div style="float: left;width: 150px;height: 20px;margin: 10px;">
+		<{$comment_one.email}>
+	</div>
+	<div style="float: left;width: 500px;height: 80px;margin: 10px;">
+		<div><strong class="star star<{$comment_one.star}>"></strong></div>
+		<div style="margin: 5px;"><{$comment_one.content}></div>
+		<div><{$comment_one.addtime|date="Y-m-d H:i:s",###}></div>
+	</div>
+</div>
+<div style="width: 750px;height: 300px; margin: 10px;background-color: #F7F7F7" >
+	<div style="float: left;width: 150px;height: 20px;border: 1px solid #f7f7f7;margin: 10px;text-align: center;line-height: 20px;">输入回复内容</div>
+	<textarea name="content" id="content" style="float: left;margin:10px; width: 500px;height: 240px;"></textarea>
+	<div style="text-align: center;margin-top: 5px;">
+		<input type="hidden" name="comment_id" value="<{$comment_one.comment_id}>">
+		<input type="hidden" name="commenter_id" value="<{$Think.get.commenter_id}>">
+		<input type="button"  value="提交回复" class="button" />
+		<a style="cursor: pointer;margin-right: 10px;color: blue;" href="__MODULE__/Index/foods/foods_id/<{$Think.get.foods_id}>.html">返回该菜品</a>
+	</div>
+	
+</div>
+
+</form>
+</div>
+<div style="float: right;width: 400px;height: 410px;border: 1px solid #f7f7f7;margin-top: 20px;">
+	<div style="margin: 0 auto;text-align: left;margin-top:10px;margin-bottom: 5px;border-bottom-style: dotted;border-width:1px;">历史回复</div>
+	<volist name="reply_all" id="val">
+		<div style="margin: 3px;"><span style="color: blue"><{$val.email}></span>回复：<span><{$val.content}></span></div>
+		<div style="margin: 3px; border-bottom-style: dotted;border-width:1px;"><{$val.addtime|date="Y-m-d H:i:s",###}></div>
+	</volist>
+</div>
+</div>
+<script>
+	$(".button").click(function(){
+		if($("#content").val() ==''){
+			alert('回复内容不能为空!');
+			return false;
+		}else{
+			$('form').submit();
+		}
+	});
+</script>

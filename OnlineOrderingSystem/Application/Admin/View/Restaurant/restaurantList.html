@@ -1,0 +1,77 @@
+<layout name="Layout/layout" />
+<!-- 搜索 -->
+<div class="form-div search_form_div">
+    <form method="GET" name="search_form" action="__SELF__">
+		<p>
+			餐厅名称：
+	   		<input type="text" name="restaurant_name" size="30" value="<{$Think.get.restaurant_name}>" />
+		</p>
+		<p><input type="submit" value=" 搜索 " class="button" /></p>
+    </form>
+</div>
+<!-- 列表 -->
+<div class="list-div" id="listDiv">
+	<table cellpadding="3" cellspacing="1">
+    	<tr>
+            <th >餐厅名称</th>
+            <th >餐厅负责人</th>
+            <th >餐厅邮箱</th>
+            <th >餐厅手机号</th>
+            <th >餐厅固定号</th>
+            <th >餐厅地址</th>
+            <th >餐厅注册时间</th>
+            <th >状态(1:营业中 2：开店申请)</th>
+            <th >餐厅logo</th>
+			<th width="60">操作</th>
+        </tr>
+		<volist name="list" id="val">          
+			<tr>
+				<td align="center"><{$val.restaurant_name}></td>
+				<td align="center"><{$val.person_leader}></td>
+				<td align="center"><{$val.restaurant_email}></td>
+				<td align="center"><{$val.mobile}></td>
+				<td align="center"><{$val.tel}></td>
+				<td align="center"><{$val.address}></td>
+				<td align="center"><{$val.addtime|date="Y-m-d H:i:s",###}></td>
+				
+				<td align="center">
+				<if condition="$val.restaurant_state eq 1">
+					营业中
+					<else />
+					<a href="javascript:void(0);" restaurant_id="<{$val.restaurant_id}>" onclick="applyConfirmByAjax(this);">开店申请</a>
+				</if>
+				
+				</td>
+				<td align="center"><{$val.restaurant_logo}></td>
+		        <td align="center">
+		        	<a href="__CONTROLLER__/restaurantEdit/restaurant_id/<{$val.restaurant_id}>/p/<{$Think.get.p}>" title="编辑">编辑</a> |
+	                <a href="__CONTROLLER__/restaurantDelete/restaurant_id/<{$val.restaurant_id}>/p/<{$Think.get.p}>" onclick="return confirm('确定要删除吗？');" title="移除">移除</a> 
+		        </td>
+	        </tr>
+        </volist>
+		<tr><td colspan='99' class="pages" align="center"><{$page}></td></tr>
+	</table>
+</div>
+<script>
+	function applyConfirmByAjax(obj){
+		if(confirm("通过开店申请?")){
+			var _this = $(obj);
+			var restaurant_id = _this.attr("restaurant_id");
+			
+					$.ajax({
+						type : "GET",
+						url : "__CONTROLLER__/applyConfirmByAjax/restaurant_id/"+restaurant_id,
+						success : function(data){
+							
+							if(data == 1){
+								_this.html("营业中");
+							}
+						}
+						
+					});
+		}else{
+			return false;
+		}
+		
+	}
+</script>

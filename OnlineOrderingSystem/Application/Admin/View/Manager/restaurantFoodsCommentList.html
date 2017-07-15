@@ -1,0 +1,40 @@
+<layout name="Layout/layout" />
+<table cellspacing="1" cellpadding="3">
+<tbody>
+	<tr>
+      
+      <th >编号</th>
+      <th >菜品</th>
+      <th >好评度</th>    
+      <th >评论</th>    
+      <th >操作</th>
+    </tr>
+ 
+  	<volist name="comment_foods_info['data']" id="val">
+    <tr>
+      
+      <td width="350" align="center"><{$val.comment_id}></td>
+      <td width="170" align="center"><a href="__MODULE__/Foods/foodsDetail/foods_id/<{$val.foods_id}>/"><{$val.foods_name}></a></td>
+      <td width="100" align="center">
+		<div ><{$val.star}>星</div>	
+	  </td>
+      <td width="350" align="center">
+		<div ><{$val.content}></div>	
+	  </td>
+	  <td>
+	  	<a href="__CONTROLLER__/restaurantFoodsCommentEdit/comment_id/<{$val.comment_id}>/p/<{$Think.get.p}>">编辑</a>&nbsp;
+	  	<a href="__CONTROLLER__/restaurantFoodsCommentDelete/comment_id/<{$val.comment_id}>/p/<{$Think.get.p}>">删除</a>
+	  </td>
+      
+	  
+      
+     
+    </tr>
+    </volist>
+  	
+</tbody>
+
+</table>
+<br/>
+<div class="pages mt20" ><{$comment_foods_info.page}></div>	  
+<br/>

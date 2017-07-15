@@ -1,0 +1,48 @@
+<layout name="layout/layout" />
+<div class="main-div">
+    <form action="__MODULE__/Privilege/privilegeAdd" method="post" name="theForm" enctype="multipart/form-data">
+        <table width="100%" id="general-table">
+            <tr>
+                <td class="label">权限名称:</td>
+                <td>
+                    <input type='text' name='pri_name'  value='' /> <font color="red">*</font>
+                </td>
+                <tr>
+                <td class="label">模块名称：</td>
+                <td>
+                    <input  type="text" name="module_name" value="" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">控制器名称：</td>
+                <td>
+                    <input  type="text" name="controller_name" value="" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">方法名称：</td>
+                <td>
+                    <input  type="text" name="action_name" value="" />
+                </td>
+            </tr>
+            </tr>
+            <tr>
+                <td class="label">上级权限:</td>
+                <td>
+                    <select name="parent_id">
+                        <option value="0">顶级权限</option>
+                        <foreach name="privilege_data" item="val">
+                            <option value="<{$val.pri_id}>" ><{$val.level|str_repeat='&nbsp;&nbsp;',###}><{$val.pri_name}></option>
+                        </foreach>
+                    </select>
+                </td>
+            </tr>
+            
+        </table>
+        <div class="button-div">
+            <input type="submit" value=" 确定 " />
+            <input type="reset" value=" 重置 " />
+        </div>
+       
+    </form>
+</div>

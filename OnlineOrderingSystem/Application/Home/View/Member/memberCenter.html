@@ -1,0 +1,120 @@
+<layout name="Layout/layout" />
+<include file="Layout/header" />
+	<div style="clear:both;"></div>
+
+	<!-- 页面主体 start -->
+	<div class="main w1210 bc mt10">
+		<div class="crumb w1210">
+			<h2><strong>用户中心 </strong><span>> 账户信息</span></h2>
+		</div>
+		
+		<!-- 左侧导航菜单 start -->
+		<div class="menu fl">
+			<h3>账户信息</h3>
+			<div class="menu_wrap">
+				<dl>
+					<dt>订单中心 <b></b></dt>
+					<dd><b>.</b><a href="__MODULE__/Cart/orderList.html">我的订单</a></dd>
+					<dd><b>.</b><a href="__MODULE__/Cart/orderList/pay_status/2.html">取消订单记录</a></dd>
+				
+				</dl>
+
+				<dl>
+					<dt>账户中心 <b></b></dt>
+					<dd class="cur"><b>.</b><a href="__CONTROLLER__/memberCenter.html">账户信息</a></dd>
+					<dd><b>.</b><a href="__CONTROLLER__/addressAddList.html">收货地址</a></dd>
+					<dd ><b>.</b><a href="__CONTROLLER__/memberGuestbook.html">我的留言</a></dd>
+					<dd ><b>.</b><a href="__CONTROLLER__/memberComment.html">我的评论</a></dd>
+					
+				</dl>
+
+			</div>
+		</div>
+		<!-- 左侧导航菜单 end -->
+
+		<!-- 右侧内容区域 start -->
+		<div class="content fl ml10">
+			<div class="user_hd">
+				<h3>账户信息</h3>
+			</div>
+
+			<div class="user_bd mt10">
+				<form action="__CONTROLLER__/memberInfoEdit" method="post" enctype="multipart/form-data">
+					<ul>
+						<li>
+							<label for="">用户名：</label>
+							<strong><{$member_info.email}></strong>
+							<input type="hidden" name="member_id" value="<{$member_info.member_id}>">
+						</li>
+						<li>
+							<label for="">昵称：</label>
+							<input type="text" class="txt" value="<{$member_info.nickname}>" name="nickname"/>
+						</li>
+						<li>
+							<label for="">已选头像：</label>
+							<{$member_info.face|showImage=###,50,50}>
+						</li>
+						<li>
+								<label for="">可选择头像：</label>
+								<img src="__PUBLIC__/Home/Images/Face/1.gif" width="100px" height="100px" class="mem_face" />
+								<input type="hidden" name="mem_face" value="__PUBLIC__/Home/Images/Face/1.gif">
+								<for start="1" end="10">
+										<img src="__PUBLIC__/Home/Images/Face/<{$i}>.gif" width="50px" height="50px" style="cursor: pointer;"
+										onclick="changeFace(this);"
+										/>
+								</for>
+						
+						</li>
+						<li>
+							<label for="">上传头像：</label>
+							<input type="file" class="txt" name="face"/>
+							
+						</li>
+						<li>
+							<label for="">密码：</label>
+							<input type="password" class="txt" name="password" id="password"/>
+							为空表示不修改
+						</li>
+						<li style="display: none;" id="cpassword">
+							<label for="">确认密码：</label>
+							<input type="password" class="txt" name="cpassword"/>
+						</li>
+						<li>
+							<label for="">手机号码：</label>
+							<input type="text" class="txt" value="<{$member_info.mobile}>" name="mobile"/>
+						</li>
+						<li>
+							<label for="">地址：</label>
+							<input type="text" class="txt" value="<{$member_info.address}>" name="address"/>
+						</li>
+						<li>
+							<label for="">经验值：</label>
+							<strong><{$member_info.xp}></strong>
+						</li>
+						<li>
+							<label for="">&nbsp;</label>
+							<input type="submit" value="提交" class="sbtn"/>
+						</li>
+					</ul>
+				</form>
+			</div>
+		</div>
+		<!-- 右侧内容区域 end -->
+	</div>
+	<!-- 页面主体 end-->
+
+	<div style="clear:both;"></div>
+<script type="text/javascript">
+$("#password").focus(function(){
+	  $("#cpassword").css("display","block");
+	});
+function changeFace(obj){
+	
+	$('.mem_face').attr('src',$(obj).attr('src'));
+	$('input[name="mem_face"]').val($(obj).attr('src'));
+	
+	
+}
+
+</script>
+	

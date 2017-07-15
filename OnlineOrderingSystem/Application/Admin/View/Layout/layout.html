@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "/www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><{$net_title}></title>
+<link href="__PUBLIC__/Admin/Styles/general.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/Styles/main.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/datepicker/jquery-ui-1.9.2.custom.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" language="javascript" src="__PUBLIC__/datepicker/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/datepicker/jquery-ui-1.9.2.custom.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/datepicker/datepicker_zh-cn.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/ueditor/ueditor.all.min.js"> </script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/ueditor/lang/zh-cn/zh-cn.js"></script>
+</head>
+<body>
+<h1>
+	<if condition="$page_btn_name neq null">
+    	<span class="action-span"><a href="<{$page_btn_link}>"><{$page_btn_name}></a></span>
+    </if>
+    <span class="action-span1"><a href="__MODULE__">易达订餐&nbsp;管理中心</a></span>
+    <span id="search_id" class="action-span1"> - <{$page_title}> </span>
+    <div style="clear:both"></div>
+</h1>
+
+{__CONTENT__}
+
+<div id="footer">
+版权所有 &copy; 2017 四川网络科技有限公司，并保留所有权利。</div>
+</body>
+</html>

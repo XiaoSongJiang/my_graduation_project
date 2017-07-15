@@ -1,0 +1,244 @@
+<layout name="Layout/layout" />
+<style>
+/**** 翻页的样式 ****/
+
+a:hover{
+	text-decoration: none;
+	
+}
+span.current {
+	padding: 2px;
+	margin: 2px;
+	background: #F00;
+	color: #FFF;
+	font-weight: bold;
+}
+
+a.num {
+	padding: 2px;
+	border: 0px solid #F00;
+	margin: 2px;
+}
+
+span.required {
+	color: red;
+	font-size: 15px
+}
+
+.pages {
+	text-align: center;
+}
+
+.pages a, .pages span {
+	display: inline-block;
+	padding: 2px 5px;
+	margin: 0 1px;
+	border: 1px solid #f0f0f0;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.pages a, .pages li {
+	display: inline-block;
+	list-style: none;
+	text-decoration: none;
+	color: #192E32;
+}
+
+.pages a.first, .pages a.prev, .pages a.next, .pages a.end {
+	margin: 0;
+}
+
+.pages a:hover {
+	background: red;
+}
+
+.pages span.current {
+	background: #50A8E6;
+	color: #FFF;
+	font-weight: 700;
+	border-color: #50A8E6;
+}
+</style>
+<include file="Layout/header" />
+
+<!-- 列表主体 start -->
+	<div class="list w1210 bc mt10">
+		<!-- 面包屑导航 start -->
+		<div class="breadcrumb">
+			<h2>当前分类：<a href="__MODULE__/Index/index.html">首页</a>  
+				<volist name="position" id="val">
+					><a ><{$val}></a>
+				</volist>
+			</h2>
+		</div>
+		<!-- 面包屑导航 end -->
+
+		<!-- 左侧内容 start -->
+		<div class="list_left fl mt10">
+		
+			<div style="clear:both;"></div>	
+
+			<!-- 新品推荐 start -->
+			<div class="viewd leftbar mt10">
+				<h2><strong>新品推荐</strong></h2>
+				<div class="leftbar_wrap">
+					<ul>
+						<volist name="new_foods" id="v1">
+						<li>
+							<dl>
+								<dt><a href="__MODULE__/Index/foods/foods_id/<{$v1.foods_id}>"><{$v1.logo|showImage=###,"150","100"}></a></dt>
+								<dd><a href="__MODULE__/Index/foods/foods_id/<{$v1.foods_id}>"><{$v1.foods_name}></a></dd>
+								<dd><strong>￥<{$v1.shop_price}></strong></dd>
+							</dl>
+						</li>
+						</volist>
+						
+					</ul>
+				</div>
+			</div>
+			<!-- 新品推荐 end -->
+
+			<!--热销排行 start -->
+			<div class="viewd leftbar mt10">
+				<h2><strong>热销排行榜</strong></h2>
+				<div class="leftbar_wrap">
+					<ul>
+						<volist name="foods_sales_top" id="v1">
+						<li>
+							<dl>
+								<dt><a href="__MODULE__/Index/foods/foods_id/<{$v1.foods_id}>"><{$v1.logo|showImage=###,"150","100"}></a></dt>
+								<dd><a href="__MODULE__/Index/foods/foods_id/<{$v1.foods_id}>"><{$v1.foods_name}></a></dd>
+								<dd><strong>￥<{$v1.shop_price}></strong></dd>
+							</dl>
+						</li>
+						</volist>
+					</ul>
+				</div>
+			</div>
+			<!--热销排行 end -->
+
+			<!-- 最近浏览 start -->
+			<div class="viewd leftbar mt10">
+				<h2><strong>最近浏览过的菜品</strong></h2>
+				<div class="leftbar_wrap">
+					<ul>
+						<volist name="recent_through" id="v1">
+						<li>
+							<dl>
+								<dt><a href="__MODULE__/Index/foods/foods_id/<{$v1.foods_id}>"><{$v1.logo|showImage=###,"150","100"}></a></dt>
+								<dd><a href="__MODULE__/Index/foods/foods_id/<{$v1.foods_id}>"><{$v1.foods_name}></a></dd>
+								<dd><strong>￥<{$v1.shop_price}></strong></dd>
+							</dl>
+						</li>
+						</volist>
+					</ul>
+				</div>
+			</div>
+			<!-- 最近浏览 end -->
+		</div>
+		<!-- 左侧内容 end -->
+	
+		<!-- 列表内容 start -->
+		<div class="list_bd fl ml10 mt10">
+			<!-- 热卖、促销 start -->
+			<div class="list_top">
+				<!-- 热卖推荐 start -->
+				<div class="hotsale fl">
+					<h2><strong><span class="none">热卖推荐</span></strong></h2>
+					<ul>
+						<volist name="hot_foods" id="v1">
+						<li>
+							<dl>
+								<dt><a href="__MODULE__/Index/foods/foods_id/<{$v1.foods_id}>"><{$v1.logo|showImage=###,"150","100"}></a></dt>
+								<dd><a href="__MODULE__/Index/foods/foods_id/<{$v1.foods_id}>"><{$v1.foods_name}></a></dd>
+								<dd><strong>￥<{$v1.shop_price}></strong></dd>
+							</dl>
+						</li>
+						</volist>
+					</ul>
+				</div>
+				<!-- 热卖推荐 end -->
+
+				
+			</div>
+			<!-- 热卖、促销 end -->
+			
+			<div style="clear:both;"></div>
+			<a name="search"></a>
+			<!-- 菜品筛选 start -->
+			<div class="filter mt10">
+				
+				<div class="filter_wrap">
+					<dl>
+						
+						<dt>餐厅：</dt>
+						<dd <if condition="$Think.get.restaurant_id eq ''">class="cur"</if>><a href="__MODULE__/Search/searchByHead/foods_key/<{$Think.post.search_key}>/price/<{$Think.get.price}>">不限</a></dd>
+						<volist name="restaurant_info" id="val">
+							<dd <if condition="$Think.get.restaurant_id eq $val['restaurant_id']">class="cur"</if>><a href="__MODULE__/Search/searchByHead/restaurant_id/<{$val.restaurant_id}>/foods_key/<{$Think.post.search_key}>/price/<{$Think.get.price}>"><{$val.restaurant_name}></a></dd>
+						</volist>
+					</dl>
+
+					<dl>
+						<dt>价格：</dt>
+						<dd <?php if(!I('get.price')) echo 'class="cur"'; ?>><a href="<?php echo U('searchByHead?restaurant_id='.I('get.restaurant_id').'&foods_key='.I('post.search_key')); ?>#search">不限</a></dd>
+						<?php foreach ($price as $v): ?>
+						<dd <?php if(I('get.price')==$v) echo 'class="cur"'; ?>><a href="<?php echo U('searchByHead?price='.$v.'&restaurant_id='.I('get.restaurant_id').'&foods_key='.I('post.search_key')); ?>#search"><{$v}></a></dd>
+						<?php endforeach; ?>
+					</dl>
+					
+				</div>
+			</div>
+			<!-- 菜品筛选 end -->
+			
+			<div style="clear:both;"></div>
+
+			<!-- 排序 start -->
+			<div class="sort mt10">
+				<dl>
+					<dt>排序：</dt>
+					<dd <?php if(I('get.ob', 'total_sales')=='total_sales') echo ' class="cur"'; ?>><a href="<?php echo U('searchByHead?price='.I('get.price').'&ob=total_sales'.'&foods_key='.I('post.search_key')); ?>#search">销量</a></dd>
+					<dd <?php if(I('get.ob')=='shop_price') echo ' class="cur"'; ?>><a href="<?php echo U('searchByHead?price='.I('get.price').'&ob=shop_price&ow='.(I('get.ow')=='asc'?'desc':'asc').'&foods_key='.I('post.search_key')); ?>#search">价格<?php if(I('get.ow') == '' || I('get.ow') == 'desc') echo '【降】';else echo '【升】'; ?></a></dd>
+					<dd <?php if(I('get.ob')=='comment') echo ' class="cur"'; ?>><a href="<?php echo U('searchByHead?price='.I('get.price').'&ob=comment'.'&foods_key='.I('post.search_key')); ?>#search">评论数</a></dd>
+					<dd <?php if(I('get.ob')=='addtime') echo ' class="cur"'; ?>><a href="<?php echo U('searchByHead?price='.I('get.price').'&ob=addtime'.'&foods_key='.I('post.search_key')); ?>#search">上架时间</a></dd>
+				</dl>
+			</div>
+			<!-- 排序 end -->
+			
+			<div style="clear:both;"></div>
+
+			<!-- 菜品列表 start-->
+			<div class="foodslist mt10">
+			
+				<ul>
+				
+					<volist name="foods_all_info.data" id="val">
+					<li>
+						<dl>
+							<dt><a href="__MODULE__/Index/foods/foods_id/<{$v1.foods_id}>"><{$val.logo|showImage=###,100,100}></a></dt>
+							<dd><a href="__MODULE__/Index/foods/foods_id/<{$v1.foods_id}>"><{$val.foods_name}></a></dd>
+							<dd><strong>￥<{$val.shop_price}>元</strong></dd>
+							<dd><a href="">总销量：<{$val.total_sales}></a></dd>
+							<dd><a href=""><em>已有<{$val.comment}>人评价</em></a></dd>
+							<dd><a href=""><em>开始售卖日期:<{$val.addtime|date="Y-m-d H:i:s",###}></em></a></dd>
+						</dl>
+					</li>
+					</volist>
+					
+				</ul>
+				
+			
+			</div>
+			<!-- 菜品列表 end-->
+
+			<!-- 分页信息 start -->
+			<div class="pages mt20"><{$foods_all_info.page}></div>
+			<!-- 分页信息 end -->
+
+		</div>
+		<!-- 列表内容 end -->
+	</div>
+	<!-- 列表主体 end-->
+
+<include file="Layout/footer" />

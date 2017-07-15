@@ -1,0 +1,278 @@
+@CHARSET "UTF-8";
+/*
+	用户留言css
+*/
+/* ==表单样式== */
+form {
+	margin:0;
+	padding: 0
+}
+
+.input {
+	border: 1px #ddd solid;
+	width: 200px;
+	height: 20px;
+	line-height: 20px;
+	padding: 0px 3px;
+	color: #555;
+	background: #fbfbfb;
+}
+
+.textarea {
+	border: 1px #ddd solid;
+	font-size: 12px;
+	padding: 3px;
+	color: #555;
+	background: #fbfbfb;
+	overflow: auto;
+}
+
+.button {
+	border: 1px #ddd solid;
+	font: 12px Verdana, Arial, Helvetica, sans-serif;
+	height: 22px;
+	line-height: 20px;
+	padding: 0px 3px;
+	background: #f7f7f7;
+}
+
+.submit {
+	border: 1px #ddd solid;
+	font: 12px Verdana, Arial, Helvetica, sans-serif;
+	height: 22px;
+	line-height: 20px;
+	padding: 0px 3px;
+	background: #f7f7f7;
+	cursor: pointer;
+}
+
+
+
+ul.mood {
+	overflow: hidden;
+	height: 25px;
+	padding-top: 3px;
+}
+
+ul.mood li {
+	float: left;
+}
+/* ============留言主体============== */
+#guestbookquery {
+	margin: auto;
+	border: 1px #d2d2d2 solid;
+}
+
+#guestbookquery ul {
+	margin: 0;
+	padding: 0
+}
+
+#guestbookquery li {
+	list-style-type: none;
+	height: 35px;
+	
+}
+
+#guestbookquery div.cap {
+	border-bottom: 1px #d2d2d2 solid;
+	background: #f5f5f5
+}
+
+#guestbookquery .au {
+	float: left;
+	width: 160px;
+	line-height: 35px;
+	border-right: 1px #d2d2d2 solid;
+}
+
+#guestbookquery .auz {
+	padding-left: 20px;
+}
+
+#guestbookquery .gb {
+	line-height: 35px;
+}
+
+#guestbookquery .gbz {
+	padding-left: 20px;
+}
+
+#guestbookquery div.guestbook {
+	width: 100%;
+	height: 100%;
+	border-top: 1px #d2d2d2 solid;
+}
+
+#guestbookquery div.auinfo {
+	float: left;
+	width: 160px;
+}
+
+#guestbookquery div.aupic {
+	width: 95px;
+	height: 95px;
+	padding: 10px 10px 10px 32px;
+}
+
+#guestbookquery div.auname {
+	width: 150px;
+	text-align: center;
+	line-height: 22px;
+	padding-left: 5px;
+	padding-right: 5px;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+#guestbookquery div.lynum {
+	width: 150px;
+	color: #999;
+	text-align: center;
+	line-height: 22px;
+	padding-left: 5px;
+	padding-right: 5px;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+#guestbookquery div.gbinfo {
+	margin-left: 160px;
+	border-left: 1px #d2d2d2 solid;
+}
+
+#guestbookquery div.ttinfo {
+	height: 28px;
+	margin-left: 5px;
+	margin-right: 5px;
+	border-bottom: 1px #d2d2d2 solid;
+}
+
+#guestbookquery div.title {
+	float: left;
+	padding-left: 15px;
+	line-height: 28px;
+	color: #333333;
+}
+
+#guestbookquery div.fjinfo {
+	float: right;
+	padding-right: 10px;
+	line-height: 28px;
+}
+
+#guestbookquery div.fjinfo img {
+	padding-top: 6px;
+}
+
+#guestbookquery div.fjinfo a {
+	padding-left: 3px;
+	line-height: 28px;
+}
+
+#guestbookquery div.mood {
+	float: left;
+	width: 20px;
+	padding-left: 5px;
+	padding-top: 15px;
+}
+
+#guestbookquery div.bdinfo {
+	width: 580px;
+	padding-top: 8px;
+	padding-left: 10px;
+	color: #999999;
+}
+
+#guestbookquery div.bdinfo2 {
+	width: 580px;
+	padding-top: 8px;
+	padding-left: 10px;
+	padding-right: 10px;
+	color: #555555;
+	word-break: break-all;
+	overflow: auto;
+}
+
+#guestbookquery div.hfinfo {
+	height: 65px;
+	margin: 20px 5px 0px 5px;
+	padding-left: 25px;
+	border-top: 1px #dddddd dashed;
+}
+
+#guestbookquery div.hf {
+	color: #ff0000;
+	padding-top: 5px;
+}
+
+#guestbookquery div.hfanswer {
+	line-height: 25px;
+	padding-right: 10px;
+	color: #000000;
+}
+
+#guestbookquery div.btinfo {
+	height: 25px;
+	padding-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+	padding-left: 10px;
+	border-top: 1px #d2d2d2 solid;
+}
+
+/**** 翻页的样式 ****/
+span.current {
+	padding: 2px;
+	margin: 2px;
+	background: #F00;
+	color: #FFF;
+	font-weight: bold;
+}
+
+a.num {
+	padding: 2px;
+	border: 0px solid #F00;
+	margin: 2px;
+}
+
+span.required {
+	color: red;
+	font-size: 15px
+}
+
+.pages {
+	text-align: center;
+}
+
+.pages a, .pages span {
+	display: inline-block;
+	padding: 2px 5px;
+	margin: 0 1px;
+	border: 1px solid #f0f0f0;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.pages a, .pages li {
+	display: inline-block;
+	list-style: none;
+	text-decoration: none;
+	color: #192E32;
+}
+
+.pages a.first, .pages a.prev, .pages a.next, .pages a.end {
+	margin: 0;
+}
+
+.pages a:hover {
+	background: red;
+}
+
+.pages span.current {
+	background: #50A8E6;
+	color: #FFF;
+	font-weight: 700;
+	border-color: #50A8E6;
+}

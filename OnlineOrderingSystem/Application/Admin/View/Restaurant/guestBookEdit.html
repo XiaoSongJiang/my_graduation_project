@@ -1,0 +1,51 @@
+<layout name="Layout/layout" />
+
+<form method="post" action="__SELF__" name="form" enctype="multipart/form-data">
+
+<table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#DDEEF2">
+
+
+<tr> 
+	<td width="90" align="right" bgcolor="#DDEEF2">留言者邮箱：</td>
+	<td bgcolor="#FFFFFF"><{$guestbook_one.email}></td>
+</tr>
+<tr> 
+	<td width="90" align="right" bgcolor="#DDEEF2">提交问题标题：</td>
+	<td bgcolor="#FFFFFF"><{$guestbook_one.title}></td>
+</tr>
+
+<tr> 
+	<td width="90" align="right" bgcolor="#DDEEF2">提交问题内容：</td>
+	<td bgcolor="#FFFFFF"><textarea style="width:650px; height:60px; border:1px #d2d2d2 solid; padding:5px; overflow:hidden;" readonly><{$guestbook_one.body}></textarea></td>
+</tr>
+
+<tr> 
+	<td width="90" align="right" bgcolor="#DDEEF2">提交问题时间：</td>
+	<td bgcolor="#FFFFFF"><{$guestbook_one.addtime|date="Y-m-d H:i:s",###}></td>
+</tr>
+
+
+
+<tr> 
+	<td width="90" align="right" bgcolor="#DDEEF2">回复问题：</td>
+	<td bgcolor="#FFFFFF"><textarea id="reply_an" name="reply" style="width:650px; height:100px; border:1px #d2d2d2 solid; padding:5px;"><{$guestbook_one.reply}></textarea></td>
+</tr>
+
+</table>
+
+<div style="text-align: center;">
+	<input type="button"  value="提交回复" class="button" />
+	<input type="hidden" name="gb_id" value="<{$guestbook_one.gb_id}>" />
+	<input type="hidden" name="ifreply" value="1" />
+</div>
+</form>
+<script>
+	$(".button").click(function(){
+		if($("#reply_an").val() ==''){
+			alert('回复内容不能为空!');
+			return false;
+		}else{
+			$('form').submit();
+		}
+	});
+</script>

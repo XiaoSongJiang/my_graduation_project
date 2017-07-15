@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title><{$page_title}></title>
+	<meta name="keywords" content="<{$page_keywords}>" />
+	<meta name="description" content="<{$page_description}>" />
+	<link rel="stylesheet" href="__PUBLIC__/Home/Style/base.css" type="text/css" />
+	<link rel="stylesheet" href="__PUBLIC__/Home/Style/global.css" type="text/css" />
+	<link rel="stylesheet" href="__PUBLIC__/Home/Style/header.css" type="text/css" />
+	<volist name="page_css" id="css_val">
+		<link rel="stylesheet" href="__PUBLIC__/Home/Style/<{$css_val}>.css" type="text/css" />
+	</volist>
+	<link rel="stylesheet" href="__PUBLIC__/Home/Style/bottomnav.css" type="text/css" />
+	<link rel="stylesheet" href="__PUBLIC__/Home/Style/footer.css" type="text/css" />
+
+	<script type="text/javascript" src="__PUBLIC__/Home/Js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Home/Js/header.js"></script>
+	<volist name="page_js" id="js_val">
+		<script type="text/javascript" src="__PUBLIC__/Home/Js/<{$js_val}>.js"></script>
+	</volist>
+</head>
+<body>
+	<!-- 顶部导航 start -->
+	<div class="topnav">
+		<div class="topnav_bd w1210 bc">
+			<div class="topnav_left" border="1">
+				
+			</div>
+			<div class="topnav_right fr">
+				<ul>
+					<li><if condition="$Think.session.email neq null">
+					<{$Think.session.email}>,您好！欢迎来到  <b><a href="__APP__/Home/Index/index.html">易达在线订餐</a>！</b>
+					[<a href="__APP__/Home/Member/logout.html">退出</a>]
+					[<a href="__MODULE__/Restaurant/login.html">餐厅登录</a>] 
+					[<a href="__MODULE__/Restaurant/register.html">我要开店</a>]  
+					<else />游客，您好！欢迎来到  <b><a href="__APP__/Home/Index/index.html">易达在线订餐</a></b>
+					[<a href="__APP__/Home/Member/login.html">会员登录</a>] 
+					[<a href="__APP__/Home/Member/register.html">免费注册会员</a>] 
+					[<a href="__MODULE__/Restaurant/register.html">我要开店</a>] </if>
+					[<a href="__MODULE__/Restaurant/login.html">餐厅登录</a>]
+					</li>
+					
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- 顶部导航 end -->
+	
+	<div style="clear:both;"></div>
+	
+	<!-- 中间内容 start-->
+	
+	{__CONTENT__}
+	
+	<!-- 中间内容end-->
+	
+<div style="clear:both;"></div>
+	<!-- 底部版权 start -->
+	<div class="footer w1210 bc mt10">
+		<p class="links">
+			<a href="">关于我们</a> |
+			<a href="">订餐指南</a> |
+			<a href="">联系方式</a> |
+			<a href="">配送说明</a> |
+			<a href="">投诉建议</a>
+		</p>
+		<p class="copyright">
+			 © 2017-2020 在线订餐 版权所有，并保留所有权利。
+		</p>
+		<p class="auth">
+			<a href=""><img src="__PUBLIC__/Home/images/xin.png" alt="" /></a>
+			<a href=""><img src="__PUBLIC__/Home/images/kexin.jpg" alt="" /></a>
+			<a href=""><img src="__PUBLIC__/Home/images/beian.gif" alt="" /></a>
+		</p>
+	</div>
+	<!-- 底部版权 end -->
+
+</body>
+</html>

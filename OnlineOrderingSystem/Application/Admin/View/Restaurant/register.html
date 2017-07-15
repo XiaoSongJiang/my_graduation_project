@@ -1,0 +1,62 @@
+<layout name="Layout/layout_res" />
+	
+	<div style="clear:both;"></div>
+
+	<!-- 页面头部 start -->
+	<div class="header w990 bc mt15">
+		<div class="logo w990">
+			<h2 class="fl"><a href="__APP__/Home/Index/index.html"><img src="__PUBLIC__/Home/Images/logo.png" alt="在线订餐"></a></h2>
+		</div>
+	</div>
+	<!-- 页面头部 end -->
+	
+	<div class="login w990 bc mt10 regist">
+		<div class="login_hd">
+			<h2>餐厅注册</h2>
+			<b></b>
+		</div>
+		<div class="login_bd">
+			<div class="login_form fl">
+				<form action="__CONTROLLER__/register.html" method="post">
+					<ul>
+						<li>
+							<label for="">餐厅名：</label>
+							<input type="text" class="txt" name="restaurant_name" />
+							<p>3-20位字符，可由中文、字母、数字和下划线组成</p>
+						</li>
+						<li>
+							<label for="">注册人账号：</label>
+							<input type="text" class="txt" name="restaurant_email" />
+							<p>餐厅注册人账号(email)</p>
+						</li>
+						<li>
+							<label for="">密码：</label>
+							<input type="password" class="txt" name="password" />
+							<p>6-20位字符，可使用字母、数字和符号的组合，不建议使用纯数字、纯字母、纯符号</p>
+						</li>
+						<li>
+							<label for="">确认密码：</label>
+							<input type="password" class="txt" name="cpassword" />
+							<p> <span>请再次输入密码</p>
+						</li>
+						<li class="checkcode">
+							<label for="">验证码：</label>
+							<input type="text"  name="checkcode" />
+							<img src="__CONTROLLER__/chkcode" alt="" onclick="$(this).attr('src','__CONTROLLER__/chkcode/'+Math.random())" style="cursor: pointer;"/>
+							<span><a href="javascript:void(0)" onclick="$(this).parent().prev().trigger('click');">看不清？换一张</a></span>
+						</li>
+						<li>
+							<label for="">&nbsp;</label>
+							<input type="checkbox" class="chb" checked="checked" /> 我已阅读并同意《用户注册协议》
+						</li>
+						<li>
+							<label for="">&nbsp;</label>
+							<input type="submit" value="" class="login_btn" onclick="if(!$('.chb').attr('checked')) {alert('必须同意用户注册协议！');return false;}"/>
+						</li>
+					</ul>
+				</form>
+
+				
+			</div>
+		</div>
+	</div>

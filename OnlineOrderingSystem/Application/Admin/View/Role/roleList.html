@@ -1,0 +1,32 @@
+<layout name="Layout/layout" />
+<!-- 搜索 -->
+<div class="form-div search_form_div">
+    <form method="GET" name="search_form" action="__SELF__">
+		<p>
+			角色名称：
+	   		<input type="text" name="role_name" size="30" value="<{$Think.get.role_name}>" />
+		</p>
+		<p><input type="submit" value=" 搜索 " class="button" /></p>
+    </form>
+</div>
+<!-- 列表 -->
+<div class="list-div" id="listDiv">
+	<table cellpadding="3" cellspacing="1">
+    	<tr>
+            <th >角色名称</th>
+            <th >权限名称</th>
+			<th width="60">操作</th>
+        </tr>
+		<volist name="data" id="val">          
+			<tr>
+				<td align="center"><{$val.role_name}></td>
+				<td><ul><li><{$val.pri_names}></li></ul></td>
+		        <td align="center">
+		        	<a href="__CONTROLLER__/roleEdit/role_id/<{$val.role_id}>/p/<{$Think.get.p}>" title="编辑">编辑</a> |
+	                <a href="__CONTROLLER__/roleDelete/role_id/<{$val.role_id}>/p/<{$Think.get.p}>" onclick="return confirm('确定要删除吗？');" title="移除">移除</a> 
+		        </td>
+	        </tr>
+        </volist>
+		<tr><td colspan='99' class="pages" align="center"><{$page}></td></tr>
+	</table>
+</div>

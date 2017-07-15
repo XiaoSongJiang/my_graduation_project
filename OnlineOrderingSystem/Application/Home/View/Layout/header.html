@@ -1,0 +1,93 @@
+
+	<!-- 头部 start -->
+	<div class="header w1210 bc mt15">
+		<!-- 头部上半部分 start 包括 logo、搜索、用户中心和购物车结算 -->
+		<div class="logo w1210">
+			<h1 class="fl"><a href="__MODULE__/Index/index.html"><img src="__PUBLIC__/Home/images/logo.png" title="易达在线订餐"></a></h1>
+			<!-- 头部搜索 start -->
+			<div class="search fl">
+				<div class="search_form">
+					<div class="form_left fl"></div>
+					
+					<form action="__MODULE__/Search/searchByHead" name="serarch" method="post" class="fl">
+						<select name="search_by" id="search_by" onchange="if($(this).val() == 'foods_method'){$('#search_key').attr('placeholder','请输入菜品关键字');}else{$('#search_key').attr('placeholder','请输入餐厅关键字');}">
+							<option value="foods_method" <if condition='$Think.post.search_by eq "foods_method"'>selected="selected"</if>>菜品</option>
+							<option value="rest_method" <if condition='$Think.post.search_by eq "rest_method"'>selected="selected"</if>>餐厅</option>
+						</select>
+						<input type="text" class="txt" placeholder="请输入菜品关键字" name="search_key" id="search_key" value="<{$Think.post.search_key}>"/><input type="submit" class="btn" value="搜索" />
+					</form>
+					<div class="form_right fl"></div>
+					
+				</div>
+				
+				<div style="clear:both;"></div>
+
+				<div class="hot_search">
+					<strong>热门搜索:</strong>
+					<a href="">小炒牛肉</a>
+					<a href="">红烧肉</a>
+					<a href="">糖醋排骨</a>
+					<a href="">清蒸鱼</a>
+				</div>
+			</div>
+			<!-- 头部搜索 end -->
+
+			<!-- 用户中心 start-->
+			<div class="user fl">
+				<a href="__MODULE__/Member/memberCenter"><img src="__PUBLIC__/Home/Images/mem_center.png" /></a>
+			</div>
+			<!-- 用户中心 end-->
+
+			<!-- 购物车 start -->
+			<div class="cart fl">
+			  <a href="__MODULE__/Cart/cartList.html"><img src="__PUBLIC__/Home/Images/cart_btn.png" /></a>
+			</div>
+			<!-- 购物车 end -->
+		</div>
+		<!-- 头部上半部分 end -->
+		<div style="clear:both;"></div>
+
+		<!-- 导航条部分 start -->
+		<div class="nav w1210 bc mt10">
+			<!--  菜品分类部分 start-->
+			<div class="category fl <if condition='$show_nav neq 1'>cat1</if>"> <!-- 非首页，需要添加cat1类 -->
+				<div class="cat_hd <if condition='$show_nav neq 1'>off</if>">  <!-- 注意，首页在此div上只需要添加cat_hd类，非首页，默认收缩分类时添加上off类，鼠标滑过时展开菜单则将off类换成on类 -->
+					<h2>全部菜品分类</h2>
+					<em></em>
+				</div>
+				
+				<div class="cat_bd <if condition='$show_nav neq 1'>none</if>">
+				<!-- 循环顶级分类 -->
+					<foreach name="category_info" item="val" key="i">
+					<div class="cat <if condition='$i eq 0'>item1</if>">
+						<h3><a href="__MODULE__/Search/searchFoods/cate_id/<{$val.cate_id}>"><{$val.cate_name}></a> <b></b></h3>
+						<div class="cat_detail">
+							<foreach name="val['children']" item="vo" key='j'>
+							<dd class="<if condition='$j eq 0'>dl_1st</if>">
+								<dt><a href="__MODULE__/Search/searchFoods/cate_id/<{$vo.cate_id}>"><{$vo.cate_name}></a></dt>
+							</dd>
+							</foreach>
+						</div>
+					</div>
+					</foreach>
+				</div>
+			</div>
+			<!--  菜品分类部分 end--> 
+
+			<div class="navitems fl">
+				<ul class="fl">
+					
+					<li><a href="__MODULE__/Index/index.html">首页</a></li>
+					<li><a href="__MODULE__/Index/restaurantList.html">所有餐厅</a></li>
+					<li><a href="__MODULE__/Index/foodsHotAll.html">热卖菜品</a></li>
+					<li><a href="__MODULE__/Index/foodsNewAll.html">新品菜品</a></li>
+					<li ><a href="__MODULE__/Cart/orderList.html">我的订单</a></li>
+					
+					<li><a href="__MODULE__/Index/recentThrough.html">最近浏览</a></li>
+				</ul>
+				
+			</div>
+		</div>
+		<!-- 导航条部分 end -->
+	</div>
+	<!-- 头部 end-->

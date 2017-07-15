@@ -1,0 +1,194 @@
+<layout name="Layout/layout" />	
+<include file="Layout/header" />
+<div style="clear:both;"></div>
+<!-- 综合区域 start 包括幻灯展示-->
+	<div class="colligate w1210 bc mt10">
+		<!-- 幻灯区域 start -->
+		<div class="slide fl">
+			<div class="area">
+				<div class="slide_items">
+					<ul>
+						
+						<volist name="foods_ppt_pic" id="vo">
+							<li><a href="__MODULE__/Index/foods/foods_id/<{$vo.foods_id}>">
+							<{$vo.logo|showImage=###,690,330}></a>
+							</li>
+						</volist>
+					</ul>
+				</div>
+				<div class="slide_controls">
+					<ul>
+						<li class="on">1</li>
+						<li>2</li>
+						<li>3</li>
+						<li>4</li>
+						<li>5</li>
+						<li>6</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- 幻灯区域 end-->
+	
+		<!-- 右侧区域 start-->
+		<div class="coll_right fl ml10">
+			<div class="news mt10">
+				<h2><strong>网站公告</strong></h2>
+				<ul>
+					<li class="odd"><a href="">美食不断</a></li>
+					<li><a href="">买一送一大放送</a></li>
+					<li class="odd"><a href="">五一美食大促销</a></li>
+					<li><a href="">新鲜褚橙全面开售！</a></li>
+					<li class="odd"><a href="">美食全场低至3折</a></li>
+					<li><a href="">看得见的诱惑</a></li> 
+					<li class="odd"><a href="">快抢购</a></li>
+					<li><a href="">享生活 疯狂享受美食！</a></li>
+				</ul>
+
+			</div>
+			
+			<div class="service mt10">
+				
+				<div class="service_wrap">
+					<h2>
+					<span class="on">最近用户</span>
+					</h2>
+					<ul>
+						<volist name="login_members" id="val">
+							<li><a href=""><{$val}></a></li>
+						</volist>
+						
+					</ul>
+					
+					
+				</div>
+			</div>
+
+		</div>
+		<!--右侧区域 end-->
+	</div>
+	<!-- -综合区域 end -->
+	
+	<div style="clear:both;"></div>
+
+	<!-- 导购区域 start -->
+	<div class="guide w1210 bc mt15">
+		<!-- 导购左边区域 start -->
+		<div class="guide_content fl">
+			<h2>
+				<span class="on">疯狂抢购(is_promote)</span>
+				<span>热卖菜品(is_hot)</span>
+				<span>推荐菜品(is_best)</span>
+				<span>新品上架(is_new)</span>
+				
+			</h2>
+			
+			<div class="guide_wrap">
+				<!-- 疯狂抢购 start-->
+				<div class="crazy">
+					<ul>
+						<volist name="promote_foods" id="v1">
+						<li>
+							<dl>
+								<dt><a href="__CONTROLLER__/foods/foods_id/<{$v1.foods_id}>"><{$v1['logo']|showImage=###}></a></dt>
+								<dd><a href="__CONTROLLER__/foods/foods_id/<{$v1.foods_id}>"><{$v1.foods_name}></a></dd>
+								<dd><span>售价：</span><strong> ￥<{$v1.promote_price}>元</strong></dd>
+							</dl>
+						</li>
+						</volist>
+						
+					</ul>
+					
+				</div>
+				
+				
+				<!-- 疯狂抢购 end-->
+
+				<!-- 热卖 start -->
+				<div class="hot none">
+					<ul>
+						<volist name="hot_foods" id="v2">
+						<li>
+							<dl>
+								<dt><a href="__CONTROLLER__/foods/foods_id/<{$v2.foods_id}>"><{$v2['logo']|showImage=###,100,100}></a></dt>
+								<dd><a href="__CONTROLLER__/foods/foods_id/<{$v2foods_.id}>"><{$v2.foods_name}></a></dd>
+								<dd><span>售价：</span><strong> ￥<{$v2.shop_price}>元</strong></dd>
+							</dl>
+						</li>
+						</volist>
+						
+					</ul>
+				</div>
+				<!-- 热卖 end -->
+
+				<!-- 精品 start -->
+				<div class="recommend none">
+					<ul>
+						<volist name="best_foods" id="v3">
+						<li>
+							<dl>
+								<dt><a href="__CONTROLLER__/foods/foods_id/<{$v3.foods_id}>"><{$v3['logo']|showImage=###,100,100}></a></dt>
+								<dd><a href="__CONTROLLER__/foods/foods_id/<{$v3.foods_id}>"><{$v3.foods_name}></a></dd>
+								<dd><span>售价：</span><strong> ￥<{$v3.shop_price}>元</strong></dd>
+							</dl>
+						</li>
+						</volist>
+					</ul>
+				</div>
+				<!-- 精品 end -->
+			
+				<!-- 新品上架 start-->
+				<div class="new none">
+					<ul>
+						<volist name="new_foods" id="v4">
+						<li>
+							<dl>
+								<dt><a href="__CONTROLLER__/foods/foods_id/<{$v4.foods_id}>"><{$v4['logo']|showImage=###,100,100}></a></dt>
+								<dd><a href="__CONTROLLER__/foods/foods_id/<{$v4.foods_id}>"><{$v4.foods_name}></a></dd>
+								<dd><span>售价：</span><strong> ￥<{$v4.shop_price}>元</strong></dd>
+							</dl>
+						</li>
+						</volist>
+					</ul>
+				</div>
+				<!-- 新品上架 end-->
+
+			
+			</div>
+
+		</div>
+		<!-- 导购左边区域 end -->
+		
+		<!-- 侧栏 销量排行榜 start-->
+		<div class="sidebar fl ml10">
+			<h2><strong>销量排行榜</strong></h2>
+			<div class="sidebar_wrap">
+				<volist name="foods_sales_top" id="val" key="k">
+					<dl <if condition="$k neq 4">class="first"</if>>
+					
+						<dt><a href="__MODULE__/Index/foods/foods_id/<{$val.foods_id}>"><img src="<{$val.logo}>" style="width: 200px;height: 100px; margin-left: 45px;"></a></dt>
+						<dd style="text-align: center; margin-top: 2px"><strong><a href="__MODULE__/Index/foods/foods_id/<{$val.foods_id}>"><{$val.foods_name}></a></strong></dd>
+						<dd style="text-align: center; margin-top: 2px;">总销量:<{$val.total_sales}></dd>
+						<dd style="text-align: center; margin-top: 2px;color: #D20000;">￥:<{$val.shop_price}></dd>
+					</dl>
+				</volist>
+				
+			</div>
+			
+
+		</div>
+		<!-- 侧栏 销量排行榜 end -->
+		
+	</div>
+	<!-- 导购区域 end -->
+
+	<div style="clear:both;"></div>
+
+<include file="Layout/footer" />
+
+	
+
+
+	
+
+	

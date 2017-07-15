@@ -1,0 +1,169 @@
+/**
+ * 餐厅列表css
+ */
+.rest_hd1{
+	
+	line-height:40px;
+	font-weight:bold;
+}
+.rest_hd{
+	height:40px;
+	text-align:left;
+	line-height:40px;
+	
+	background-color: #F7F7F7;
+	font-weight:bold;
+}
+.rest_hd span{
+	display: inline-block;
+	margin-left: 50px;
+}
+.rest_hd span a{
+	text-decoration: none;
+	
+}
+.rest_hd input{
+	width: 150px; 
+	height:28px;
+	border-width: 1px; 
+	border-style: solid; 
+	border-color:#aaa #ddd #ddd #aaa; 
+	padding: 5px; 
+	padding:0 5px; 
+	margin: 5px 25px 5px 20px;
+}
+#rest_search{
+	background-color: #C6D3DF;
+	margin-left: 50px;
+	width: 100px;
+}
+.rest_list table {
+	border-bottom: solid #C6D3DF;
+	width: 100%;
+}
+.rest_list table tr,td{
+	brest_list:1px solid #BFBFBF;
+	
+}
+
+.rest_list tbody td {
+	text-align: center;
+	border-bottom: 1px dotted #E7E3E7;
+}
+
+.rest_list .last td {
+	border-bottom: 0;
+}
+
+.rest_list .col1 {
+	width: 139px;
+}
+
+.rest_list .col2 {
+	width: 139px;
+}
+
+.rest_list .col3 {
+	width: 139px;
+}
+
+.rest_list .col4 {
+	width: 139px;
+	
+}
+.rest_list .col5 {
+	width: 139px;
+	
+}
+.rest_list .col6 {
+	width: 139px;
+	
+}
+.rest_list .col7 {
+	width: 139px;
+	
+}
+
+.rest_list tbody img {
+	width: 80px;
+	height: 80px;
+	border: 1px solid #eee;
+	vertical-align: middle;
+	margin: 0 auto ; 
+	display: block;
+	padding-bottom: 5px;
+}
+
+.rest_list td.col1 {
+	
+	padding: 5px 0 5px 5px;
+}
+
+.rest_list td.col1 strong {
+	display: inline-block;
+	
+}
+
+.rest_list td.col2 {
+	padding: 0 auto ; 
+}
+.rest_list td.col3 {
+	padding: 0 auto ; 
+}
+/**** 翻页的样式 ****/
+span.current {
+	padding: 2px;
+	margin: 2px;
+	background: #F00;
+	color: #FFF;
+	font-weight: bold;
+}
+
+a.num {
+	padding: 2px;
+	border: 0px solid #F00;
+	margin: 2px;
+}
+
+span.required {
+	color: red;
+	font-size: 15px
+}
+
+.pages {
+	text-align: center;
+}
+
+.pages a, .pages span {
+	display: inline-block;
+	padding: 2px 5px;
+	margin: 0 1px;
+	border: 1px solid #f0f0f0;
+	border-radius: 3px;
+}
+
+.pages a, .pages li {
+	display: inline-block;
+	list-style: none;
+	text-decoration: none;
+	color: #192E32;
+}
+
+.pages a.first, .pages a.prev, .pages a.next, .pages a.end {
+	margin: 0;
+	
+}
+
+.pages a:hover {
+	background: red;
+}
+
+
+.pages span.current {
+	background: #50A8E6;
+	color: #FFF;
+	font-weight: 700;
+	border-color: #50A8E6;
+}
+
+

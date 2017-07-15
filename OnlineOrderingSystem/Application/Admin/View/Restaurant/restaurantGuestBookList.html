@@ -1,0 +1,51 @@
+<layout name="Layout/layout" />
+<table cellspacing="1" cellpadding="3">
+<tbody>
+	<tr>
+      <th >选择</th> 
+      <th >编号</th>
+      <th >留言</th>    
+	  <th >回复状态</th>
+      <th >回复</th>
+      <th >操作</th>
+    </tr>
+ 
+  	<volist name="guestbook_info['data']" id="val">
+    <tr>
+      <td width="148" align="center"><input type="checkbox" name="dall[]" value="<{$val.gb_id}>" class="guestbookcheckbox"></td> 
+      <td width="350" align="center"><{$val.gb_id}></td>
+      <td>
+	  	<div id="gbtitle_<{$val.gb_id}>" gb_id='<{$val.gb_id}>' class="gbtitle" style="cursor:pointer;" onclick="showOrshut(this);"><div id="arrow" style="width: 250px;"><img src="__PUBLIC__/Admin/Images/arrowright.gif"><{$val.title}>&nbsp;&nbsp;<{$val.addtime|date="Y-m-d H:i:s",###}></div></div><input type="hidden" name="ttz" id="ttz" value="">
+		<div id="gbbody_<{$val.gb_id}>" style="display:none;padding: 8px;">留言：<textarea style="width:250px; height:40px; border:1px #d2d2d2 solid; padding:5px; overflow:hidden;" readonly=""><{$val.body}></textarea></div>
+		<div id="gbanswer_<{$val.gb_id}>" reply_status="<{$val.ifreply}>" style="display:none;padding: 8px;">回复：<textarea style="width:250px; height:40px; border:1px #d2d2d2 solid; padding:5px; overflow:hidden;" readonly=""><{$val.reply}></textarea></div>
+	  </td>
+      
+	  <td width="170" align="center"><img <if condition="$val.ifreply eq 0"> src="__PUBLIC__/Admin/Images/toolbar_no.gif"<else />src="__PUBLIC__/Admin/Images/toolbar_ok.gif"</if> border="0"></td>
+      <td width="170" align="center"><a href="__CONTROLLER__/guestBookEdit/gb_id/<{$val.gb_id}>"><img src="__PUBLIC__/Admin/Images/modi.png" border="0"></a></td>
+      <td width="170" align="center"><a href="__CONTROLLER__/guestBookDelete/gb_id/<{$val.gb_id}>" onclick="return confirm('确认删除么?');">删除</a></td>
+    </tr>
+    </volist>
+  	
+</tbody>
+
+</table>
+<br/>
+<div class="pages mt20" ><{$guestbook_info.page}></div>	  
+<br/>
+<script>
+function showOrshut(obj){
+	var id = $(obj).attr('gb_id');
+	if($('#gbbody_'+id).css('display') == 'none'){
+		$('#gbbody_'+id).show();
+		$(obj).find('img').attr('src','__PUBLIC__/Admin/Images/arrowdown.gif');
+		if($('#gbanswer_'+id).attr('reply_status') == 1){
+			$('#gbanswer_'+id).show();
+		}
+	}else{
+		$('#gbbody_'+id).css('display','none');
+		$('#gbanswer_'+id).css('display','none');
+		$(obj).find('img').attr('src','__PUBLIC__/Admin/Images/arrowright.gif');
+	}
+}
+
+</script>

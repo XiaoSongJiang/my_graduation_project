@@ -1,0 +1,55 @@
+<layout name="Layout/layout" />	
+<layout name="Layout/layout" />
+
+<!-- 头部 start -->
+	<div class="header w1210 bc mt15">
+		<!-- 头部上半部分 start 包括 logo、搜索-->
+		<div class="logo w1210">
+			<h1 class="fl"><a href="__MODULE__/Index/index.html"><img src="__PUBLIC__/Home/images/logo.png" title="易达在线订餐"></a></h1>
+			
+			<!-- 头部搜索 start -->
+			<div class="search fr" >
+				<div class="search_form">
+					<div class="form_left fl" ></div>
+					
+					<form action="" name="serarch" method="get" class="fl" >
+						
+						<input type="text" class="txt" placeholder="请输入菜品关键字" name="foods_new_key" value="<{$Think.get.foods_new_key}>"/><input type="submit" class="btn" value="搜索" />
+					</form>
+					<div class="form_right fl"></div>
+					
+				</div>
+				
+				<div style="clear:both;"></div>
+			</div>
+			<!-- 头部搜索 end -->
+	</div>
+	
+	<div style="clear:both;"></div>
+
+</div>
+		
+
+		<div  style="width:1200px;height: 40px;border: 1px solid #E7E7E7;margin-top:10px;margin:auto;line-height: 40px;padding-left: 20px;font-size: 15px;font-weight: bold;background: #FFB111;">
+			<span><a href="__MODULE__/Index/index">返回首页</a>&nbsp;</span > <span style="margin-left:50px;color:white;font-size: 20px;">所有新品菜品</span>
+		</div>
+		<div style="width: 1220px;height: 480px;margin:auto;border: 1px solid #E7E7E7;margin-top: 6px;">
+			<ul>
+						<volist name="data" id="v1">
+						<li style="width: 170px;float: left;display: inline;text-align: center;margin-bottom:10px;margin-top: 5px">
+							<dl>
+								<dt><a href="__CONTROLLER__/foods/foods_id/<{$v1.foods_id}>"><{$v1['logo']|showImage=###,130,130}></a></dt>
+								<dd><a href="__CONTROLLER__/foods/foods_id/<{$v1.foods_id}>"><{$v1.foods_name}></a></dd>
+								<dd><span>售价：</span><strong style="color:#D00000"> ￥<{$v1.promote_price}>元</strong></dd>
+							</dl>
+						</li>
+						</volist>
+						
+			</ul>
+			
+		</div>
+		<div style="clear:both;"></div>
+		<div class="pages mt10" id="pages"> <{$page}></div>
+	
+
+<include file="Layout/footer" />

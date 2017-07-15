@@ -1,0 +1,51 @@
+<layout name="layout/layout" />
+<div class="main-div">
+    <form action="__MODULE__/Privilege/privilegeEdit" method="post" name="theForm" enctype="multipart/form-data">
+        <table width="100%" id="general-table">
+            <tr>
+                <td class="label">权限名称:</td>
+                <td>
+                    <input type='text' name='pri_name' maxlength="20" value='<{$onepri.pri_name}>'/><font color="red">*</font>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">模块名称：</td>
+                <td>
+                    <input  type="text" name="module_name" value="<{$onepri.module_name}>" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">控制器名称：</td>
+                <td>
+                    <input  type="text" name="controller_name" value="<{$onepri.controller_name}>" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">方法名称：</td>
+                <td>
+                    <input  type="text" name="action_name" value="<{$onepri.action_name}>" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">上级分类:</td>
+                <td>
+                    <select name="parent_id">
+                        <option value="0">顶级权限</option>
+                        <foreach name="privilege_data" item="val">
+                            <option value="<{$val.pri_id}>"
+                            	<if condition="$val['pri_id'] eq $onepri['parent_id']"> selected="selected"</if>
+                            >
+                            <{$val.level|str_repeat='&nbsp;&nbsp;',###}><{$val.pri_name}>
+                            </option>
+                        </foreach>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <div class="button-div">
+            <input type="submit" value=" 确定 " />
+            <input type="reset" value=" 重置 " />
+             <input type="hidden" name="pri_id" value="<{$onepri.pri_id}>">
+        </div>
+    </form>
+</div>

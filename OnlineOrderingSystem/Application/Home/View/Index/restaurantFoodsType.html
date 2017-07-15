@@ -1,0 +1,54 @@
+<layout name="Layout/layout" />
+
+<!-- 头部 start -->
+	<div class="header w1210 bc mt15">
+		<!-- 头部上半部分 start 包括 logo、搜索-->
+		<div class="logo w1210">
+			<h1 class="fl"><a href="__MODULE__/Index/index.html"><img src="__PUBLIC__/Home/images/logo.png" title="易达在线订餐"></a></h1>
+			<div class="restaurant_name fl"><a href="__MODULE__/Index/restaurant/restaurant_id/<{$restaurant_info.restaurant_id}>"><{$restaurant_info.restaurant_name}></a></div>
+			<!-- 头部搜索 start -->
+			<div class="search fr" >
+				<div class="search_form">
+					<div class="form_left fl" ></div>
+					
+					<form action="__MODULE__/Search/searchFoodsInRest.html" name="serarch" method="get" class="fl" >
+						<input type="hidden" name="restaurant_id" value="<{$restaurant_info.restaurant_id}>">
+						<input type="text" class="txt" placeholder="请输入菜品关键字" name="rest_search_key" value="<{$Think.get.rest_search_key}>"/><input type="submit" class="btn" value="搜索" />
+					</form>
+					<div class="form_right fl"></div>
+					
+				</div>
+				
+				<div style="clear:both;"></div>
+			</div>
+			<!-- 头部搜索 end -->
+	</div>
+	<div id="welcome">
+		<img src="__PUBLIC__/Home/Images/welcome.png" width="1210px">
+	</div>
+	<div style="clear:both;"></div>
+
+</div>
+		
+
+		<div id="foods_all" style="width: 1190px;margin: auto;">
+			<span><a href="__MODULE__/Index/restaurant/restaurant_id/<{$restaurant_info.restaurant_id}>">首页</a>&nbsp;</span> <span><{$type_name}></span>
+		</div>
+		<div id="foods_all_detail" style="width: 1210px;height: 380px;margin: auto;">
+			<ul>
+						<volist name="data" id="v1">
+						<li style="width: 170px;float: left;display: inline;text-align: center;margin-bottom:10px;margin-top: 5px">
+							<dl>
+								<dt><a href="__CONTROLLER__/foods/foods_id/<{$v1.foods_id}>"><{$v1['logo']|showImage=###,130,130}></a></dt>
+								<dd><a href="__CONTROLLER__/foods/foods_id/<{$v1.foods_id}>"><{$v1.foods_name}></a></dd>
+								<dd><span>售价：</span><strong style="color:#D00000"> ￥<{$v1.shop_price}>元</strong></dd>
+							</dl>
+						</li>
+						</volist>
+						
+			</ul>
+			
+		</div>
+		<div style="clear:both;"></div>
+		<div class="pages mt10" id="pages"> <{$page}></div>
+	

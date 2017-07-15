@@ -1,0 +1,57 @@
+<layout name="Layout/layout" />
+<div class="main-div">
+    <form name="main_form" method="POST" action="__SELF__" enctype="multipart/form-data">
+        <table cellspacing="1" cellpadding="3" width="100%">
+        <tr>
+                <td class="label">角色：</td>
+                
+                <td>
+                <volist name="role_info" id="val">
+                	
+                    <input  type="checkbox" name="role_id[]" value="<{$val.role_id}>" 
+                    <if condition="in_array($val['role_id'],$mr_info)">
+                    checked="checked" 
+                	</if>/>
+                	<{$val.role_name}>
+                 </volist>
+                </td>
+               
+            </tr>
+            <tr>
+                <td class="label">账号：</td>
+                <td>
+                    <input  type="text" name="manager_name" value="<{$manager_info.manager_name}>" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">密码：</td>
+                <td>
+                    <input type="password" name="password" />
+                    <span style="color:red">*</span>不填写则表示不修改
+                </td>
+            </tr>
+            <tr>
+                <td class="label">确认密码：</td>
+                <td>
+                    <input type="password" name="cpassword" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">是否启用 1：启用0：禁用：</td>
+                <td>
+                	
+				<input type="radio" name="is_use" value="1" <if condition='$manager_info.is_use eq 1'>checked='checked'</if>/>启用
+				<input type="radio" name="is_use" value="0"  <if condition='$manager_info.is_use eq 0'>checked='checked'</if>/>禁用<br />
+			        
+                </td>
+            </tr>
+            <tr>
+                <td colspan="99" align="center">
+                    <input type="submit" class="button" value=" 确定 " />
+                    <input type="hidden" name="manager_id" value="<{$manager_info.manager_id}>">
+                    <input type="reset" class="button" value=" 重置 " />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

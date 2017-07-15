@@ -1,0 +1,267 @@
+<layout name="Layout/layout" />
+<style>
+.order_list table {
+	border:1px solid;
+	width: 100%;
+}
+.order_list table tr,td{
+	border:1px solid #BFBFBF;
+	
+}
+.order_list thead {
+	background:#BBDDE5;
+	height: 35px;
+	line-height: 35px;
+}
+
+.order_list thead th {
+	text-align: center;
+	font-weight: 500;
+}
+
+.order_list tbody td {
+	text-align: center;
+	border-bottom: 1px dotted #E7E3E7;
+}
+
+.order_list .last td {
+	border-bottom: 0;
+}
+
+.order_list .col1 {
+	width: 139px;
+}
+
+.order_list .col2 {
+	width: 139px;
+}
+
+.order_list .col3 {
+	width: 139px;
+}
+
+.order_list .col4 {
+	width: 139px;
+	
+}
+.order_list .col5 {
+	width: 139px;
+	
+}
+.order_list .col6 {
+	width: 139px;
+	
+}
+.order_list .col7 {
+	width: 139px;
+	
+}
+
+.order_list tbody img {
+	width: 80px;
+	height: 80px;
+	border: 1px solid #eee;
+	vertical-align: middle;
+	margin: 0 auto ; 
+	display: block;
+
+}
+
+.order_list td.col1 {
+	
+	padding: 5px 0 5px 5px;
+}
+
+.order_list td.col1 strong {
+	display: inline-block;
+	
+}
+
+.order_list td.col2 {
+	padding: 0 auto ; 
+}
+.order_list td.col3 {
+	padding: 0 auto ; 
+}
+/**** 翻页的样式 ****/
+span.current {
+	padding: 2px;
+	margin: 2px;
+	background: #F00;
+	color: #FFF;
+	font-weight: bold;
+}
+
+a.num {
+	padding: 2px;
+	border: 0px solid #F00;
+	margin: 2px;
+}
+
+span.required {
+	color: red;
+	font-size: 15px
+}
+
+.pages {
+	text-align: center;
+}
+
+.pages a, .pages span {
+	display: inline-block;
+	padding: 2px 5px;
+	margin: 0 1px;
+	border: 1px solid #f0f0f0;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.pages a, .pages li {
+	display: inline-block;
+	list-style: none;
+	text-decoration: none;
+	color: #192E32;
+}
+
+.pages a.first, .pages a.prev, .pages a.next, .pages a.end {
+	margin: 0;
+}
+
+.pages a:hover {
+	background: red;
+}
+
+.pages span.current {
+	background: #50A8E6;
+	color: #FFF;
+	font-weight: 700;
+	border-color: #50A8E6;
+}
+
+
+#selected_pay{
+	width: 163px; 
+	height:30px;
+	border-width: 1px; 
+	border-style: solid; 
+	border-color:#aaa #ddd #ddd #aaa; 
+	padding: 5px; 
+	padding:0 5px; 
+	margin: 5px 25px 5px 10px;
+}
+#order_submit{
+	background-color: #F5F5F5;
+	margin-left: 50px;
+	width: 100px;
+}
+input{
+	width: 150px; 
+	height:30px;
+	border-width: 1px; 
+	border-style: solid; 
+	border-color:#aaa #ddd #ddd #aaa; 
+	padding: 5px; 
+	padding:0 5px; 
+	margin: 5px 25px 5px 10px;
+}
+#selected_pay{
+	width: 163px; 
+	height:30px;
+	border-width: 1px; 
+	border-style: solid; 
+	border-color:#aaa #ddd #ddd #aaa; 
+	padding: 5px; 
+	padding:0 5px; 
+	margin: 5px 25px 5px 10px;
+}
+#order_submit{
+	background-color: #F5F5F5;
+	margin-left: 50px;
+	width: 100px;
+}
+</style>
+<form >
+				<input type="hidden" name="p" value="1" />
+				<div style="width: 20px;display: inline-block;"></div>
+				订单号:<input  type="text" placeholder="输入订单号进行搜索" name="order_id" value="<{$Think.get.order_id}>"/>
+				
+				
+				菜品名称:<input  type="text" placeholder="输入菜品名进行搜索" name="foods_name" value="<{$Think.get.foods_name}>"/>
+					  
+				
+				下单时间:<input  type="text" placeholder="请选择时间范围起始" name="start_dealtime" id="start_dealtime" value="<{$Think.get.end_dealtime}>"/>~
+					  <input  type="text" placeholder="请选择时间范围结束" name="end_dealtime" id="end_dealtime" value="<{$Think.get.end_dealtime}>"/><br/>
+				<div style="width: 20px; display: inline-block;"></div>
+				餐厅名:<input  type="text" placeholder="输入餐厅名名进行搜索" name="restaurant_name" value="<{$Think.get.restaurant_name}>"/>	
+				
+				交易状态:<select name="pay_status" id="selected_pay">
+						<option value="-1" <if condition="$Think.get.pay_status neq ''">selected="selected"</if>>全部</option>
+						<option value="0" <if condition="$Think.get.pay_status eq 0 and $Think.get.pay_status neq ''">selected="selected"</if>>未付款</option>
+						<option value="1" <if condition="$Think.get.pay_status eq 1">selected="selected"</if>>已付款</option>
+						<option value="2" <if condition="$Think.get.pay_status eq 2">selected="selected"</if>>交易取消</option>
+					  </select>
+			           订单价格:<input  type="text" name="min_price" placeholder="请选择菜品最低价格"value=""/>~
+			  		   <input  type="text" name="max_price" placeholder="请选择菜品最高价格" value=""/>
+			           
+				<br />
+				<div style="width: 20px;display: inline-block;"></div>
+				<input type="submit" value="订单搜索"  id="order_submit" /><br />
+</form>
+<!-- 菜品列表 -->
+			<div class="user_bd mt10 order_list" >
+			 <volist name="order_list_info" id="val" key="k">
+				<table>
+					<thead>
+						<tr>
+							<th class="col2"><{$val.addtime|date="Y-m-d H:i:s",###}></th>
+							<th class="col1">订单号 : <{$val.order_id}></th>
+							<th class="col3"><{$val.restaurant_name}></th>
+							<th class="col4"></th>
+							<th class="col5"></th>
+							<th class="col6"></th>
+							<th class="col7"></th>
+						</tr>	
+					</thead>
+					<tbody>
+					<volist name="val['foods_list']" id="v" >
+						<tr>
+								<td class="col2">
+								<span>
+								<a href=""><{$v.logo|showImage=###,50,50}></a> 
+								<a href=""><{$v.foods_name}></a>
+								</span>
+								</td>
+								<td class="col1">￥<{$v.foods_price}></td>
+								<td class="col3"><span><{$v.foods_num}></span></td>
+								<td class="col4"> ￥<{$v['foods_price']*$v['foods_num']}></td>
+								<td class="col5" rowspan="1"><span>
+								<if condition="$val.pay_status eq 1">
+									已支付
+									<elseif condition="$val.pay_status eq 0" />
+									未支付<br/><b style="color: blue;"><a href="__MODULE__/Cart/payForOrder/order_id/<{$val.order_id}>.html">立即支付</a><br/>
+									<a href="__MODULE__/Cart/cancelOrder/order_id/<{$val.order_id}>.html">取消订单</a>
+									</b>
+									<else />
+									交易已取消
+								</if>
+								</span></td>
+								<td class="col6"><span><{$v.receiver_name}>-<{$v.receiver_address}>-<{$v.receiver_mobile}></span></td>
+								<td class="col7">
+									
+									<span><a href="__MODULE__/Order/OrderDelete/order_id/<{$val.order_id}>.html" onclick="return confirm('确定删除?')">删除</a></span>
+								</td>
+								
+						</tr>
+						</volist>					
+					</tbody>
+		
+				</table>
+				<br/>
+			</volist>
+			<div class="pages mt20" ><{$pages}></div>
+			</div>
+<script>
+$("#start_dealtime").datepicker({ dateFormat: "yy-mm-dd" });
+$("#end_dealtime").datepicker({ dateFormat: "yy-mm-dd" });
+</script>	

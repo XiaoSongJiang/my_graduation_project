@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>易达在线订餐会员注册</title>
+	<meta name="keywords" content="易达在线订餐会员注册" />
+	<meta name="description" content="易达在线订餐会员注册" />
+	
+	<link rel="stylesheet" href="/Public/Home/Style/base.css" type="text/css" />
+	<link rel="stylesheet" href="/Public/Home/Style/global.css" type="text/css" />
+	<link rel="stylesheet" href="/Public/Home/Style/header.css" type="text/css" />
+	
+	<link rel="stylesheet" href="/Public/Home/Style/login.css" type="text/css" />		
+	<link rel="stylesheet" href="/Public/Home/Style/bottomnav.css" type="text/css" />
+	<link rel="stylesheet" href="/Public/Home/Style/footer.css" type="text/css" />
+	<link href="/Public/datepicker/jquery-ui-1.9.2.custom.min.css" rel="stylesheet" type="text/css" />
+	
+	<script type="text/javascript" src="/Public/Home/Js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="/Public/Home/Js/header.js"></script>
+	
+		
+	<script type="text/javascript" charset="utf-8" src="/Public/datepicker/jquery-ui-1.9.2.custom.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/Public/datepicker/datepicker_zh-cn.js"></script>
+</head>
+<body>
+	<!-- 顶部导航 start -->
+	<div class="topnav">
+		<div class="topnav_bd w1210 bc">
+			<div class="topnav_left" border="1">
+				
+			</div>
+			<div class="topnav_right fr">
+				<ul>
+					<li id="loginfo">
+					游客，您好！欢迎来到  <b><a href="/index.php/Home/Index/index.html">易达在线订餐</a></b>
+					[<a href="/index.php/Home/Member/login.html">会员登录</a>] 
+					[<a href="/index.php/Home/Member/register.html">免费注册会员</a>] 
+					[<a href="/index.php/Admin/Restaurant/register.html">我要开店</a>]					[<a href="/index.php/Admin/Restaurant/login.html">餐厅登录</a>]
+					</li>
+					
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- 顶部导航 end -->
+	
+	<div style="clear:both;"></div>
+	
+	<!-- 中间内容 start-->
+	
+	
+<div style="clear:both;"></div>
+
+	<!-- 页面头部 start -->
+	<div class="header w990 bc mt15">
+		<div class="logo w990">
+			<h2 class="fl"><a href="/index.php/Home/Index/index.html"><img src="/Public/Home/Images/logo.png" title="易达在线订餐"></a></h2>
+		</div>
+	</div>
+	<!-- 页面头部 end -->
+	
+	
+	<div class="login w990 bc mt10 regist">
+		<div class="login_hd">
+			<h2>用户账号注册</h2>
+			<b></b>
+		</div>
+		<div class="login_bd">
+			<div class="login_form fl">
+				<form action="/index.php/Home/Member/register" method="post">
+					<ul>
+						<li>
+							<label for="">账号：</label>
+							<input type="text" class="txt" name="email" />
+							<p>账号为邮箱格式</p>
+						</li>
+						<li>
+							<label for="">密码：</label>
+							<input type="password" class="txt" name="password" />
+							<p>6-20位字符，可使用字母、数字和符号的组合，不建议使用纯数字、纯字母、纯符号</p>
+						</li>
+						<li>
+							<label for="">确认密码：</label>
+							<input type="password" class="txt" name="cpassword" />
+							<p> <span>请再次输入密码</p>
+						</li>
+						<li class="checkcode">
+							<label for="">验证码：</label>
+							<input type="text"  name="checkcode" />
+							<img src="/index.php/Home/Member/chkcode" alt="" onclick="$(this).attr('src','/index.php/Home/Member/chkcode/'+Math.random())" style="cursor: pointer;"/>
+							<span><a href="javascript:void(0)" onclick="$(this).parent().prev().trigger('click');">看不清？换一张</a></span>
+						</li>
+						<li>
+							<label for="">&nbsp;</label>
+							<input type="checkbox" class="chb" checked="checked"/> 我已阅读并同意《用户注册协议》
+						</li>
+						<li>
+							<label for="">&nbsp;</label>
+							<input type="submit" value="" class="login_btn" onclick="if(!$('.chb').attr('checked')) {alert('必须同意用户注册协议！');return false;}"/>
+						</li>
+					</ul>
+				</form>
+
+				
+			</div>
+		
+
+		</div>
+	</div>
+
+	
+	<!-- 中间内容end-->
+	
+<div style="clear:both;"></div>
+	<!-- 底部版权 start -->
+	<div class="footer w1210 bc mt10">
+		<p class="links">
+			<a href="">关于我们</a> |
+			<a href="">订餐指南</a> |
+			<a href="">联系方式</a> |
+			<a href="">配送说明</a> |
+			<a href="">投诉建议</a>
+		</p>
+		<p class="copyright">
+			 © 2017-2020 在线订餐 版权所有，并保留所有权利。
+		</p>
+		<p class="auth">
+			<a href=""><img src="/Public/Home/images/xin.png" alt="" /></a>
+			<a href=""><img src="/Public/Home/images/kexin.jpg" alt="" /></a>
+			<a href=""><img src="/Public/Home/images/beian.gif" alt="" /></a>
+		</p>
+	</div>
+	<!-- 底部版权 end -->
+
+</body>
+</html>
+<script>
+	//ajax判断登录状态
+	$.ajax({
+		type:"GET",
+		url:"/index.php/Home/Member/ajaxLogin",
+		dataType:"json",
+		success:function(data){
+			if(data.ok == 1){
+				var html = "您好，"+data.email+' 欢迎来到  <b><a href="/index.php/Home/Index/index.html">易达在线订餐</a>！</b>[<a href="/index.php/Home/Member/logout.html">退出</a>][<a href="/index.php/Admin/Restaurant/register.html">我要开店</a>][<a href="/index.php/Admin/Restaurant/login.html">餐厅登录</a>]';
+			}else{
+				var html = "游客，您好！欢迎来到  <b><a href='/index.php/Home/Index/index.html'>易达在线订餐</a></b>[<a href='/index.php/Home/Member/login.html'>会员登录</a>] [<a href='/index.php/Home/Member/register.html'>免费注册会员</a>] [<a href='/index.php/Admin/Restaurant/register.html'>我要开店</a>][<a href='/index.php/Admin/Restaurant/login.html'>餐厅登录</a>]";
+			}
+			$("#loginfo").html(html);
+		}
+	});
+</script>

@@ -1,0 +1,427 @@
+<layout name="Layout/layout" />	
+
+	<div style="clear:both;"></div>
+	
+	<!-- 页面头部 start -->
+	<div class="header w990 bc mt15">
+		<div class="logo w990">
+			<h2 class="fl"><a href="__MODULE__/Index/index.html"><img src="__PUBLIC__/Home/Images/logo.png" alt="易达订餐"></a></h2>
+			<div class="flow fr flow2">
+				<ul>
+					<li >1.我的购物车</li>
+					<li class="cur">2.填写核对订单信息</li>
+					<li>3.成功提交订单</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- 页面头部 end -->
+	
+	<div style="clear:both;"></div>
+
+	<!-- 主体部分 start -->
+	<div class="fillin w990 bc mt15">
+		<div class="fillin_hd">
+			<h2>填写并核对订单信息</h2>
+		</div>
+
+		<div class="fillin_bd">
+			<!-- 收货人信息  start-->
+			<div class="address">
+				<h3>收货人信息 </h3>
+				<form action="" method="post" id="new_address_form" name="address_form" class="none">
+						<ul>
+							<li>
+								<span>新增收货地址</span>
+								
+							</li>
+							<li>
+								<label for=""><span>*</span>收 货 人：</label>
+								<input type="text" name="receiver" class="txt" />
+							</li>
+								
+							<li>
+								<label for=""><span>*</span>收货地址：</label>
+								<input type="text" name="address" class="txt"  />
+							</li>
+							<li>
+								<label for=""><span>*</span>手机号码：</label>
+								<input type="text" name="receiver_mobile" class="txt" />
+							</li>
+							<li>
+							
+							<input type="checkbox" name="is_default" value="0" 
+							onclick="if($(this).attr('checked')){$(this).val('1');}else{$(this).val('0');}"/>设为默认收货地址
+							
+							</li>
+							<li>
+								<label for="">&nbsp;</label>
+								<input type="hidden" value="<{$Think.session.member_id}>" name="member_id"/>
+								<input type="button" value="保存收货人信息" class="confirm_btn" id="add_btn"/>
+							</li>
+							
+						</ul>
+					</form>
+					<form action="" method="post" name="address_form_edit" class="none" id='address_form_edit'>
+					<ul>
+						<li>
+						<span>修改收货地址</span>
+								
+						</li>
+						<li>
+							<label for=""><span></span>收 货 人：</label>
+							<input type="text" name="receiver" class="txt" />
+						</li>
+							
+						<li>
+							<label for=""><span></span>收货地址：</label>
+							<input type="text" name="address" class="txt"  />
+						</li>
+						<li>
+							<label for=""><span></span>手机号码：</label>
+							<input type="text" name="receiver_mobile" class="txt" />
+						</li>
+						<li>
+						
+						<input type="checkbox" name="is_default" value="0" 
+						onclick="if($(this).attr('checked')){$(this).val('1');}else{$(this).val('0');}"/>设为默认收货地址
+						
+						</li>
+						<li>
+							<label for="">&nbsp;</label>
+							<input type="hidden" value="<{$Think.session.member_id}>" name="member_id"/>
+							<input type="hidden" name="address_id"/>
+							<input type="button" value="修改收货人信息" class="confirm_btn" id="edit_btn"/>
+						</li>
+						
+					</ul>
+				</form>
+		<form action="__SELF__" method="POST" name="order_form">
+				<div class="address_select">
+					<ul>
+						<volist name="member_address" id="val">
+						<li address_id="<{$val.address_id}>">
+							<input type="radio" class="address_radio" name="address" value="<{$val.address_id}>"  address_id="<{$val.address_id}>" <if condition="$val.is_default eq 1">checked="checked"</if> />
+							<span name="address"><{$val.address}></span>--<span name="receiver"><{$val.receiver}></span>--<span name="receiver_mobile"><{$val.receiver_mobile}></span>--
+							<if condition="$val.is_default eq 1"><span name="is_default" address_id="<{$val.address_id}>"><b id="default_address" style="color:#E33D3F">默认收货地址</b></span><else />
+							<a class="address_default" address_id="<{$val.address_id}>" href="javascript:void(0);">设置为默认收货地址</a></if>
+							--<a class="address_edit" address_id="<{$val.address_id}>" href="javascript:void(0);">编辑</a>
+							--<a class="address_delete" href="javascript:void(0);">删除</a>
+						</li>
+						</volist>
+						<li><input type="radio" name="address" class="new_address"  id="rad"/>使用新地址</li>
+					</ul>
+					
+				</div>
+			</div>
+			<!-- 收货人信息  end-->
+
+			<!-- 配送方式 start -->
+			<div class="delivery">
+				<h3>送货方式 </h3>
+
+				<div class="delivery_select">
+					<table>
+							<tr>
+								<th >送货方式</th>
+								<th >运费(每家餐厅)</th>
+							</tr>
+						<tbody>
+								
+							<tr>
+								
+								<td><input type="radio" name="delivery_method" value="送货人员送货上门" checked="checked">送货人员送货上门</td>
+								<td>￥10.00</td>
+								
+							</tr>
+							
+						</tbody>
+					</table>
+					
+				</div>
+			</div> 
+			<!-- 配送方式 end --> 
+
+			<!-- 支付方式  start-->
+			<div class="pay">
+				<h3>支付方式 </h3>
+				<div >
+					<ul class="pay_select">	
+							<li><input type="radio" name="pay_method" value="支付宝支付" checked="checked">支付宝支付</li>
+							<li><input type="radio" name="pay_method" value="货到付款">货到付款</li>
+					</ul>
+				</div>
+			</div>
+			<!-- 支付方式  end-->
+
+
+			<!-- 菜品清单 start -->
+			<div class="foods">
+				<h3>菜品清单</h3>
+				<table>
+					<thead>
+						<tr>
+							<th class="col2">所属餐厅</th>
+							<th class="col1">菜品</th>
+							
+							<th class="col3">价格</th>
+							<th class="col4">数量</th>
+							<th class="col5">小计</th>
+						</tr>	
+					</thead>
+					<tbody>
+						<volist name="cart_info" id="val" >
+							<tr>
+								<td class="col2"><span><{$val.restaurant_name}></span></td>
+								<td class="col1"><a href=""><{$val.logo|showImage="100","100"}></a>  
+								<strong><a href=""><{$val.foods_name}></a></strong></td>
+								
+								<td class="col3">￥<span><{$val.price}></span></td>
+								<td class="col4"> 
+									<span name="foods_num" ></span><{$val.foods_num}></td>
+								</td>
+								<td style="color: #E33D3F;" class="col5">￥<span><{$val.subtotal}></span></td>
+								<input type="hidden" name="order_foods[]" value="<{$val.foods_id}>-<{$val.price}>-<{$val.foods_num}>">
+							</tr>
+					</volist>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="5">
+								<ul>
+									<li>
+										<span><{$wholenum}>件菜品，总菜品金额：</span>
+										<em>￥<{$wholetotal}></em>
+									</li>
+									<li>
+										<span>配送费：</span>
+										<em><{$deliver_money}></em>
+									</li>
+									<li>
+										<span>应付总额：</span>
+										<em style="color: red">￥<{$wholetotal+$deliver_money}></em>
+									</li>
+								</ul>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+			<!-- 菜品清单 end -->
+		
+		</div>
+
+		<div class="fillin_ft">
+			<input type="hidden" name="foods">
+			<a href="javascript:void(0);" id="submit_order"><span>提交订单</span></a>
+			
+		</div>
+		<a  href="__MODULE__/Cart/cartList.html" style="cursor:pointer; float: right;display: block;margin: 7px 10px 0;font-size: 16px;font-family: Verdana, Arial;">返回购物车</a>
+	</div>
+	</form>
+	<!-- 主体部分 end -->
+
+	<div style="clear:both;"></div>
+	<include file="Layout/footer" />
+<script>
+	$("#submit_order").click(function(){
+		$("form[name='order_form']").submit();
+	});
+	//设置新地址
+	$(".new_address").live("click",function(){
+		$("#new_address_form").removeClass("none");
+		$("#address_form_edit").addClass("none");
+		
+		//ajax请求
+		$("#add_btn").click(function(){
+			//收集表单数据
+			var new_address = $("#new_address_form").serialize();
+			
+			$.ajax({
+				type : "POST",
+				url : "__MODULE__/Cart/addressAdd",
+				data : new_address,
+				dataType : "json",
+				success : function(data){
+					if(data.ok == 1){
+						var str = "";
+						
+						if(data.is_default == 1){
+							//循环li把'默认修改地址'改为'设置为默认收货地址'
+							$(".address_select li").each(function(k,v){
+								var par = $(v).find("b").parent();
+								var str1 = "<a class='address_edit' address_id='"+$(par).attr("address_id")+"' href='javascript:void(0);'>设置为默认收货地址--</a>";
+								$(v).find("b").empty();
+								$(par).html(str1);
+							});
+							str = "<span name='is_default' address_id='<{$val.address_id}>'><b id='default_address' style='color:#E33D3F'>默认收货地址--</b></span>";
+						}else{
+							str = "<a class='address_default' address_id='"+data.address_id+"' href='javascript:void(0);'>设置为默认收货地址</a>-";
+						}
+						var _html = "<li address_id='"+data.address_id+"'><input type='radio' class='address_radio' name='address' value='"+data.address_id+"' address_id='"+data.address_id+"'"
+						+" <if condition='"+data.is_default+" eq 1'>checked='checked'</if> /><span name='address'>"
+						+data.address+"</span>--<span name='receiver'>"+data.receiver+"</span>--<span name='receiver_mobile'>"+data.receiver_mobile+"</span>--"
+						+str
+						+"<a class='address_edit' address_id='"+data.address_id+"' href='javascript:void(0);'>编辑</a>--"
+						+"<a class='address_delete' address_id='"+data.address_id+"' href='javascript:void(0);'>删除</a></li>";
+						
+						
+						$("#rad").parent().before(_html);
+					}else{
+						alert(data.error);
+					}
+				}
+			});
+		});
+		
+	});
+	//修改默认收货地址
+	$(".address_default").live("click",function(){
+		var _that = $(this);
+		var _this = $(this).next();
+		var address_id = $(this).attr("address_id");
+		
+		$.ajax({
+			type : "get",
+			url : "__MODULE__/Cart/changeAddressDefault/address_id/"+address_id,
+			success : function(data){
+				
+				if(data == "ok"){
+						$(".address_select li").each(function(key,val){
+							var _now = $(val).find("span[name='is_default'] b");
+							if($(_now).length){
+								var par = $(_now).parent();
+								
+								var str1 = "<a class='address_default' address_id='"+$(par).attr("address_id")+"' href='javascript:void(0);'>设置为默认收货地址--</a>";
+								$(par).remove();
+								$(val).find(".address_edit").before(str1);
+								var str2 = "<span name='is_default' address_id='"+_that.attr("address_id")+"'><b id='default_address' style='color:#E33D3F'>默认收货地址--</b></span>";
+								$(_this).prev().remove();
+								_this.before(str2);
+								
+								return false;
+							}
+						});
+			
+			}else{
+				alert(data);	
+			}
+			}
+		});
+	});
+	//修改地址
+	$(".address_edit").live("click",function(){
+		
+		var _this = $(this);
+		//alert(_this.attr("address_id"));
+		$("#address_form_edit").removeClass("none");
+		$("#new_address_form").addClass("none");
+		$("#rad").removeAttr("checked");
+	
+		$(".address_radio").each(function(k,v){
+			
+			if($(v).attr("address_id") == _this.attr("address_id")){
+				
+				$(this).attr("checked","checked");
+			}
+		});
+		var li = _this.parent();
+		//设置表单信息
+		//收货人
+		var receiver = $(li).find("span[name='receiver']").text();
+		
+		$("#address_form_edit input[name='receiver']").val(receiver);
+		//收货地址
+		var address = $(li).find("span[name='address']").text();
+		$("#address_form_edit input[name='address']").val(address);
+		//手机号码
+		var receiver_mobile = $(li).find("span[name='receiver_mobile']").text();
+		$("#address_form_edit input[name='receiver_mobile']").val(receiver_mobile);
+		//默认地址
+		var is_default = $(li).find("span[name='is_default']").attr("address_id");
+		
+		if(is_default){
+			$("#address_form_edit input[name='is_default']").attr("checked","checked");
+			$("#address_form_edit input[name='is_default']").val("1");
+		}else{
+			$("#address_form_edit input[name='is_default']").removeAttr("checked");
+			$("#address_form_edit input[name='is_default']").val("0");
+		}
+		//隐藏表单
+		var address_id = li.attr("address_id");
+		$("#address_form_edit input[name='address_id']").val(address_id);
+		//ajax请求
+		$("#edit_btn").click(function(){
+			//收集表单数据
+			var edit_address = $("#address_form_edit").serialize();
+			
+			$.ajax({
+				type : "POST",
+				url : "__MODULE__/Cart/addressEdit",
+				data : edit_address,
+				dataType : "json",
+				success : function(data){
+					
+					if(data.ok == 1){
+						
+						$('.address_select li').each(function(k,v){
+							
+							if($(v).attr("address_id") == data.address_id){
+								
+								$(v).find("span[name='address']").text(data.address);
+								$(v).find("span[name='receiver']").text(data.receiver);
+								$(v).find("span[name='receiver_mobile']").text(data.receiver_mobile);
+								
+							}
+							
+						});
+						if(data.is_default == 1){
+							
+							$(".address_select li").each(function(key,val){
+								var _now = $(val).find("span[name='is_default'] b");
+								if($(_now).length){
+									var par = $(_now).parent();
+									
+									var str1 = "<a class='address_edit' address_id='"+$(par).attr("address_id")+"' href='javascript:void(0);'>设置为默认收货地址</a>";
+									$(par).remove();
+									$(val).find(".address_edit").before(str1);
+									var str2 = "<span name='is_default' address_id='"+data.address_id+"'><b id='default_address' style='color:#E33D3F'>默认收货地址</b></span>";
+									_this.prev().remove();
+									_this.before(str2);
+									
+									return false;
+								}
+							});
+						}
+					}else{
+						alert(data.error);
+					}
+				}
+			});
+		});
+		
+	});
+	//删除地址
+	$(".address_delete").live("click",function(){
+		
+		var _this = $(this);
+		var address_id = $(this).parent().attr("address_id");
+		
+		$.ajax({
+			type : "get",
+			url : "__MODULE__/Cart/addressDelete/address_id/"+address_id,
+			success : function(data){
+				
+			if(data == "ok"){
+				_this.parent().remove();
+			
+			}else{
+				alert(data);	
+			}
+			}
+		});
+	});
+	
+	
+	
+</script>

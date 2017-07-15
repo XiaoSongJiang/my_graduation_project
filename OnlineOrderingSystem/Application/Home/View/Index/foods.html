@@ -1,0 +1,506 @@
+<layout name="Layout/layout" />
+<!-- jqzoom 效果 -->
+<script type="text/javascript">
+		$(function(){
+			$('.jqzoom').jqzoom({
+	            zoomType: 'standard',
+	            lens:true,
+	            preloadImages: false,
+	            alwaysOn:false,
+	            title:false,
+	            zoomWidth:400,
+	            zoomHeight:400
+	        });
+		})
+	</script>
+<include file="Layout/header" />
+
+<!-- 菜品页面主体 start -->
+<div class="main w1210 mt10 bc">
+	<!-- 面包屑导航 start -->
+	<div class="breadcrumb">
+		<h2>
+			当前位置：<a href="__MODULE__/Index/index.html">首页</a> > 
+			<volist name="cate_arr" id="v">
+				<a href=""><{$v}></a> > 
+			</volist>
+			<{$foods_basic_info.foods_name}>
+		</h2>
+	</div>
+	<!-- 面包屑导航 end -->
+
+	<!-- 主体页面左侧内容 start -->
+	<div class="foods_left fl">
+		<!-- 相关分类 start -->
+		<div class="related_cat leftbar mt10">
+			<h2>
+				<strong>相关分类</strong>
+			</h2>
+			<div class="leftbar_wrap">
+				<ul>
+					<volist name="foodsextcate_arr" id="v">
+						<li><a href=""><{$v}></a></li>
+					</volist>
+					
+				</ul>
+			</div>
+		</div>
+		<!-- 相关分类 end -->
+
+		<!-- 餐厅名称start -->
+		<div class="related_cat	leftbar mt10">
+			<h2>
+				<strong>餐厅名</strong>
+			</h2>
+			<div class="leftbar_wrap">
+				<ul>
+					<li><b><a href="__MODULE__/Index/restaurant/restaurant_id/<{$restaurant_id}>"><{$restaurant_name}></a></b></li>
+					
+				</ul>
+			</div>
+		</div>
+		<!-- 餐厅名 end -->
+
+		<!-- 热销排行 start -->
+		<div class="viewd leftbar mt10">
+			<h2>
+				<strong>本店热销排行榜</strong>
+			</h2>
+			<div class="leftbar_wrap">
+				<ul>
+					<volist name="hot_foods" id="val">
+					<li><dl>
+							<dt>
+								<a href="__CONTROLLER__/foods/foods_id/<{$val.foods_id}>" alt=""/><{$val.logo|showImage=###,80,80}></a>
+							</dt>
+							<dd>
+								<a href="__CONTROLLER__/foods/foods_id/<{$val.foods_id}>"><{$val.foods_name}></a>	
+							</dd>
+							<dd>
+								<strong style="color:#E2393C">￥<{$val.shop_price}></strong>
+							</dd>
+						</dl></li>
+					</volist>
+				</ul>
+			</div>
+		</div>
+		<!-- 热销排行 end -->
+		<!-- 最近浏览 start -->
+		<div class="viewd leftbar mt10">
+			<h2>
+				<a href="javascript:void(0)" onclick="clearRecentCookie();">清空</a><strong>最近浏览过的菜品</strong>
+			</h2>
+			<div class="leftbar_wrap" id="recent_through">
+				
+			</div>
+		</div>
+		<!-- 最近浏览 end -->
+
+	</div>
+	<!-- 主体页面左侧内容 end -->
+
+	<!-- 菜品信息内容 start -->
+	<div class="foods_content fl mt10 ml10">
+		<!-- 菜品概要信息 start -->
+		<div class="summary">
+			<h3>
+				<strong><{$foods_basic_info.foods_name}></strong>
+			</h3>
+
+			<!-- 图片预览区域 start -->
+			<div class="preview fl">
+				<div class="midpic">
+					<a href="<{$foods_basic_info.logo}>" class="jqzoom" rel="gal1"> <!-- 第一幅图片的大图 class 和 rel属性不能更改 -->
+						<{$foods_basic_info.logo|showImage=###,350,350}> <!-- 第一幅图片的中图 -->
+					</a>
+				</div>
+
+				<!--使用说明：此处的预览图效果有三种类型的图片，大图，中图，和小图，取得图片之后，分配到模板的时候，把第一幅图片分配到 上面的midpic 中，其中大图分配到 a 标签的href属性，中图分配到 img 的src上。 下面的smallpic 则表示小图区域，格式固定，在 a 标签的 rel属性中，分别指定了中图（smallimage）和大图（largeimage），img标签则显示小图，按此格式循环生成即可，但在第一个li上，要加上cur类，同时在第一个li 的a标签中，添加类 zoomThumbActive  -->
+
+				<div class="smallpic">
+					<a href="javascript:;" id="backward" class="off"></a> <a
+						href="javascript:;" id="forward" class="on"></a>
+					<div class="smallpic_wrap">
+						<ul>
+							<li class="cur"><a class="zoomThumbActive"
+								href="javascript:void(0);"
+								rel="{gallery: 'gal1', smallimage: '<{$foods_basic_info.logo}>',largeimage: '<{$foods_basic_info.logo}>'}"><{$foods_basic_info.logo|showImage=###,300,300}>
+							</a></li>
+							<volist name="foods_pics" id="val">
+							<li><a href="javascript:void(0);"
+								rel="{gallery: 'gal1', smallimage: '<{$val}>',largeimage: '<{$val}>'}"><{$val|showImage=###,300,300}></a>
+							</li>
+							</volist>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+			<!-- 图片预览区域 end -->
+
+			<!-- 菜品基本信息区域 start -->
+			<div class="foodsinfo fl ml10">
+				<ul>
+					<li><span>菜品编号： </span><{$foods_basic_info.foods_id}></li>
+					
+					<li class="shop_price"><span>本店价：</span> <strong
+						id="now_price" foods_id='<{$foods_basic_info.foods_id}>'></strong> <a
+						href=""></a></li>
+					<li><span>上架时间：</span><{$foods_basic_info.addtime|date="Y-m-d
+						h:i:s",###}></li>
+					<li><span>菜品剩余：</span><{$foods_basic_info.inventory}>份</li>	
+					<li class="star <if condition='($comment_person.compre eq 0) and ($comment_person.buy eq 1)'>star
+					<elseif condition='($comment_person.compre eq 1) and ($comment_person.buy eq 1)'/>star3
+					<elseif condition='($comment_person.compre eq 2) and ($comment_person.buy eq 1)'/>star1
+					<else /></if>">
+					
+					<span>菜品评分：</span> <strong></strong><a
+						href="">(已有<{$comment_person['persons']}>人评价)</a></li>
+					<!-- 此处的星级切换css即可 默认为5星 star4 表示4星 star3 表示3星 star2表示2星 star1表示1星 -->
+				</ul>
+				<form action="__MODULE__/Cart/cartAdd" method="post" class="choose">
+					<input type="hidden" name="foods_id" value="<{$foods_basic_info.foods_id}>" />
+					<ul>
+						<li>
+							<dl>
+								<dt>购买数量：</dt>
+								<dd>
+									<input type="hidden" name="now_shop_price" id="now_shop_price">
+									<a href="javascript:;" id="reduce_num"></a> <input type="text"
+										name="foods_num" value="1" class="amount" /> <a
+										href="javascript:;" id="add_num"></a>
+								</dd>
+							</dl>
+						</li>
+
+						<li>
+							<dl>
+								<dt>&nbsp;</dt>
+									<dd>
+										<input type="button" value="" class="buy_btn" />
+									</dd>
+									<br />
+								<dt>&nbsp;</dt>
+								<dd>
+									<input type="submit" value="" class="add_btn" />
+								</dd>
+								
+							</dl>
+						</li>
+
+					</ul>
+				</form>
+			</div>
+			<!-- 菜品基本信息区域 end -->
+		</div>
+		<!-- 菜品概要信息 end -->
+
+		<div style="clear: both;"></div>
+
+		<!-- 菜品详情 start -->
+		<div class="detail">
+			<div class="detail_hd">
+				<ul>
+					<li class="first"><span>菜品介绍</span></li>
+					<li class="on"><span>菜品评价</span></li>
+					
+				</ul>
+			</div>
+			<div class="detail_bd">
+				<!-- 菜品介绍 start -->
+				<div class="introduce detail_div none">
+					
+
+					<div class="desc mt10">
+						<!-- 此处的内容 一般是通过在线编辑器添加保存到数据库，然后直接从数据库中读出 -->
+						<{$foods_basic_info.foods_desc}>
+					</div>
+				</div>
+				<!-- 菜品介绍 end -->
+
+				<!-- 菜品评论 start -->
+				<div class="comment detail_div mt10">
+					<div class="comment_summary">
+						<div class="rate fl">
+							<strong><em><{$comment_person[0]}></em>%</strong> <br /> <span>好评度</span>
+						</div>
+						<div class="percent fl">
+							<dl>
+								<dt>好评(<{$comment_person[0]}>%)</dt>
+								<dd>
+									<div style="width: <{$comment_person[0]}>px;"></div>
+								</dd>
+							</dl>
+							<dl>
+								<dt>中评(<{$comment_person[1]}>%)</dt>
+								<dd>
+									<div style="width: <{$comment_person[1]}>px;"></div>
+								</dd>
+							</dl>
+							<dl>
+								<dt>差评(<{$comment_person[3]}>%)</dt>
+								<dd>
+									<div style="width: <{$comment_person[2]}>px;"></div>
+								</dd>
+							</dl>
+						</div>
+						<div class="buyer fl">
+						
+							<dl>
+								<dt id="impress">买家印象：</dt>
+								
+							</dl>
+						</div>
+					</div>
+							
+				<!-- 分页信息 start -->
+				<div class="page mt20" id="page"></div>
+				<!-- 分页信息 end -->
+
+				<!--  评论表单 start-->
+				<div class="comment_form mt20" id="comment_form">
+					
+					<a id="is_login" style="size: 40px; color: blue; cursor: pointer;">登录</a>之后就可以评论了！
+				</div>
+				<!--  评论表单 end-->
+					
+				</div>
+		
+			</div>
+			<!-- 菜品评论 end -->
+
+			
+		</div>
+	</div>
+	<!-- 菜品详情 end -->
+
+
+</div>
+<!-- 菜品信息内容 end -->
+
+
+</div>
+<!-- 菜品页面主体 end -->
+<script>
+		
+		
+	//ajax获取菜品价格，并把正在浏览的菜品加入cookie中
+	//获取菜品的id
+	var foods_id = $("#now_price").attr("foods_id");
+	
+	$.ajax({
+		type : "GET",
+		url : " __CONTROLLER__/getPriceByAjax/foods_id/"+foods_id,
+		success : function(data){
+			$("#now_shop_price").val(data);
+			$("#now_price").html("￥"+data);
+		}
+	});
+	//设置上一个url，便于跳转订餐用户未登录前的页面
+	$("#is_login").click(function(){
+		if($.cookie("member_id")){
+			return ;
+		}else{
+			
+			$.cookie('return_url',"__CONTROLLER__/foods/foods_id/"+foods_id,{path: '/' });
+			
+			location.href = "__MODULE__/Member/login";	
+		}
+	});
+	
+	
+	loadCommentByAjax();
+	//ajax设置菜品评论
+	$.ajax({
+		type:"GET",
+		url:"__CONTROLLER__/ajaxGetComment/foods_id/"+foods_id,
+		dataType:"json",
+		success:function(data){
+			
+			if(data.login == 1){
+				
+				var str = '<form action="" id="form_comment"><ul><li><label for=""> 评分：</label>'
+						+'<input type="hidden" name="foods_id" value="<{$foods_basic_info.foods_id}>" />'
+						+'<input type="radio" name="star" value="5"/> <strong class="star star5"></strong>'
+						+'<input type="radio" name="star" value="4"/> <strong class="star star4"></strong>'
+						+'<input type="radio" name="star" value="3" checked="checked"/> <strong class="star star3"></strong>'
+						+'<input type="radio" name="star" value="2"/> <strong class="star star2"></strong>'
+						+'<input type="radio" name="star" value="1"/> <strong class="star star1"></strong>'
+					+'</li><li><label for=""> 评价内容：</label><textarea name="content" id="" cols="" rows=""></textarea></li>'
+					+'<li><label for="">菜品印象：</label><input type="text" name="impression" size="80"/><span style="color:red;">*请用逗号隔开</span></li>'
+					+'<li><label for="">&nbsp;</label><input type="button" value="提交评论"  class="comment_btn" id="comment_btn"/></li></ul></form>';
+				$('#comment_form').html(str);
+				//为表单提交邦定事件
+				$(".comment_btn").click(function(){
+					//收集表单数据
+					var form_comment = $("#form_comment").serialize();
+					
+					$.ajax({
+						type : "POST",
+						url : "__MODULE__/Comment/commentAdd",
+						data : form_comment,
+						dataType : "json",
+						success : function(data){
+							
+							if(data.ok==1){
+								//如果有新的评论则删除本页最后一个品论
+								
+								if($(".comment_items").length > 3){
+									$(".comment_items:last").remove();
+									
+								}
+								
+								//拼接评论字符串
+								var str = '<div  class="comment_items mt10"><div class="user_pic"><dl><dt><img src="'+data.face+'" alt="" /></dt><dd>'+data.email+'</dd></dl></div><div class="item"><div class="title"><span>'+data.addtime+'</span><strong class="star star'+data.star+'"></strong></div><div class="comment_content">'+data.content+'</div><div class="btns"><a href="" class="reply">回复</a><a href="__MODULE__/Comment/thumbsUp/comment_id/'+data.comment_id+'/foods_id/<{$Think.get.foods_id}>/commenter/'+data.email+'" class="useful">赞(0)</a></div></div></div>';
+								// 把评论的内容直接放到页面上
+								//alert(str);
+								//alert($(".whole div").length);
+								if($(".whole div").length == 0){
+									$(".whole").html($(str));
+								}else{
+									$(".whole div:first").before($(str));
+								}
+								loadCommentByAjax(1);
+								
+								// 清空表单
+								document.getElementById("form_comment").reset();
+								// 先滚动到710这个位置然后再显示出评论的内容
+								$("body").animate({scrollTop:"710px"},300,'linear',function(){$(str).fadeIn('slow');});
+								//更新印象数据
+								var imp="";
+								$(data.impression).each(function(key,val){
+									imp += "<dd><span>"+val.imp_name+"</span><em>("+val.imp_count+")</em></dd>";
+								});
+								$("#impress").html(imp);
+								
+							}
+							else{
+								//添加错误时，显示添加评论错误信息
+								alert(data.error);
+							}
+								
+							
+						}
+					});
+				});
+				
+			}
+		}
+	
+	});
+	
+	//ajax 加载评论函数, flag : 1 表示加载时只需ajax要更新翻页数     0 表示ajax更新所有信息
+	function loadCommentByAjax(flag){
+		var flag = arguments[0] ? arguments[0] : 0;
+		
+		$.ajax({
+			type:"GET",
+			url:"__MODULE__/Comment/showCommentByAjax/foods_id/"+foods_id,
+			dataType:"json",
+			success:function(data){
+				//ajax返回的分页信息
+				$("#page").html(data.page);
+				if(flag == 0){
+					var html = '<div class="whole">';
+					$(data.info).each(function(k,v){
+						html += '<div class="comment_items mt10"><div class="user_pic"><dl><dt><img src="'+v.face+'" alt="" /></dt><dd>'+v.email+'</dd></dl></div><div class="item"><div class="title"><span>'+v.addtime+'</span><strong class="star star'+v.star+'"></strong></div><div class="comment_content">'+v.content+'</div><div class="btns"><a comment_id='+v.comment_id+' href="__MODULE__/Comment/commentReply/comment_id/'+v.comment_id+'/commenter_id/'+v.member_id+'/foods_id/<{$Think.get.foods_id}>" id="reply" class="reply">回复</a><a href="__MODULE__/Comment/thumbsUp/comment_id/'+v.comment_id+'/foods_id/<{$Think.get.foods_id}>" class="useful">赞('+v.used+')</a></div></div></div>';
+					});
+					html += "</div>";
+					
+					html = $(html);
+					// ajax返回的数据信息放到页面上，在分页信息前面
+					$("#page").before(html);
+					var str="";
+					$(data.impression).each(function(key,val){
+						str += "<dd><span>"+val.imp_name+"</span><em>("+val.imp_count+")</em></dd>";
+					});
+					
+					$("#impress").html(str);
+				}
+				
+			}
+		});
+	}
+	
+	function pageByAjax(obj){
+		var page = $(obj).attr("p");
+		$(obj).attr("href","javascript:void(0);");
+		$.ajax({
+			type:"GET",
+			url:"__MODULE__/Comment/showCommentByAjax/foods_id/"+foods_id+"/page/"+page,
+			dataType:"json",
+			success:function(data){
+				$(".whole").remove();
+				$("#page").html(data.page);
+				var html = '<div class="whole">';
+				$(data.info).each(function(k,v){
+					html += '<div class="comment_items mt10"><div class="user_pic"><dl><dt><a href=""><img src="'+v.face+'" alt="" /></a></dt><dd><a href="">'+v.email+'</a></dd></dl></div><div class="item"><div class="title"><span>'+v.addtime+'</span><strong class="star star'+v.star+'"></strong></div><div class="comment_content">'+v.content+'</div><div class="btns"><a href="" class="reply">回复('+v.reply_count+')</a><a href="" class="useful">有用('+v.used+')</a></div></div><div class="cornor"></div></div>';
+				});
+				html += "</div>";
+				html = $(html);
+				// 把数据放到页面上
+				$(".comment_summary").after(html);
+			}
+		});
+		
+	}
+	//$(".selected").trigger("click");
+	
+	$(".buy_btn").click(function(){
+		$('.choose').attr("action","__MODULE__/Cart/buyNowOrder.html").submit();
+	});
+	//在cookie中，ajax获取最近浏览菜品
+	$.ajax({
+		type : "GET",
+		url : "__MODULE__/Index/getRecentFoodsByAjax",
+		dataType : "json",
+		success : function(data){
+			
+			var str = '';
+			// 把菜品的信息显示在页面上
+			$(data).each(function(k,v){
+				
+				str += '<dl><dt><a href="__MODULE__/Index/foods/foods_id/'+v.foods_id+'"><img src="'+v.logo+'"  alt="" /></a></dt><dd><a href="__MODULE__/Index/foods/foods_id/'+v.foods_id+'">'+v.foods_name+'</a></dd><dd style="color:#E2393C">￥'+v.shop_price+'</dd></dl>';
+			});
+			// 把dl放到页面上 */
+			
+			$("#recent_through").html(str);
+		}
+	});
+	function clearRecentCookie(){
+		
+		$.get("__MODULE__/Index/clearRecentFoodsCookie.html",function(data){
+			$.ajax({
+				type : "GET",
+				url : "__MODULE__/Index/getRecentFoodsByAjax",
+				dataType : "json",
+				success : function(data){
+					
+					var str = '';
+					// 把菜品的信息显示在页面上
+					$(data).each(function(k,v){
+						
+						str += '<dl><dt><a href="__MODULE__/Index/foods/foods_id/'+v.foods_id+'"><img src="'+v.sm_logo+'" alt="" /></a></dt><dd><a href="__MODULE__/Index/foods/foods_id/'+v.foods_id+'">'+v.foods_name+'</a></dd></dl>';
+					});
+					// 把dl放到页面上 */
+					
+					$("#recent_through").html(str);
+				}
+			});
+		},"text");
+	}
+	function openChild(obj){
+		var url = '__MODULE__/Comment/openChild/comment_id/'+$(obj).attr('comment_id');
+		var name='评论回复';                        //网页名称; 
+        var iWidth=700;                          //弹出窗口的宽度; 
+        var iHeight=600;                         //弹出窗口的高度; 
+        //获得窗口的垂直位置 
+        var iTop = (window.screen.availHeight - 30 - iHeight) / 2; 
+        //获得窗口的水平位置 
+        var iLeft = (window.screen.availWidth - 10 - iWidth) / 2; 
+        window.open(url, name, 'height=' + iHeight + ',,innerHeight=' + iHeight + ',width=' + iWidth + ',innerWidth=' + iWidth + ',top=' + iTop + ',left=' + iLeft + ',status=no,toolbar=no,menubar=no,resizable=no,scrollbars=0,titlebar=no'); 
+		
+
+	}
+</script>
+<include file="layout/footer" />

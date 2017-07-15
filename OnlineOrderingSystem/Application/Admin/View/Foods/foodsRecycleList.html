@@ -1,0 +1,123 @@
+<layout name="Layout/layout" />
+<form>
+		<input type="hidden" name="p" value="1" />
+		<p>菜品名称:<input style="width:169px" type="text" name="foods_name" value="<{$Think.get.foods_name}>"/><br/>
+		</p>
+		
+		<p>菜品价格:<input style="width:76.5px" type="text" name="min_price" value="<{$Think.get.min_price}>"/>~
+			  <input style="width:76.5px" type="text" name="max_price" value="<{$Think.get.max_price}>"/><br/>
+		</p>
+		<p>添加日期:<input style="width:76.5px" type="text" name="start_addtime" id="start_addtime" value="<{$Think.get.start_addtime}>"/>~
+			  <input style="width:76.5px" type="text" name="end_addtime" id="end_addtime" value="<{$Think.get.end_addtime}>"/><br/>
+		</p>
+		<p>
+			 <select name="cate_id">
+    			<option value="">选择分类</option>
+    			<volist name="cate_info" id="val">
+    				<option <if condition="$Think.get.cate_id eq $val['cate_id']">selected="selected"</if> value="<{$val.cate_id}>"><{$val.level|str_repeat="&nbsp;&nbsp;&nbsp;",###}><{$val.cate_name}></option>
+    			</volist>
+			 </select>
+		
+		<input type="submit" value="搜索" /><br /></p>
+		排序方式:
+			
+		<input onclick="parentNode.submit();" type="radio" name="odby" value="id_asc" <if condition="$Think.get.odby eq 'id_asc' or $Think.get.odby eq ''">checked='checked'</if>/>根据添加时间升序
+		<input onclick="parentNode.submit();" type="radio" name="odby" value="id_desc" <if condition='$Think.get.odby eq "id_desc"'>checked='checked'</if>/>根据添加时间降序
+		<input onclick="parentNode.submit();" type="radio" name="odby" value="shop_price_asc" <if condition='$Think.get.odby eq "shop_price_asc"'>checked='checked' </if>/>根据价格升序
+		<input onclick="parentNode.submit();" type="radio" name="odby" value="shop_price_desc"  <if condition='$Think.get.odby eq "shop_price_desc"'>checked='checked'</if>/>根据价格降序<br />
+		
+	</form>
+<!-- 菜品列表 -->
+<br/>
+	<table border='1' cellspacing='0' cellpadding='0' width='100%' >
+		<tr>
+			<th >菜品典型图</th>
+            <th >菜品名</th>
+            <th >主分类名</th>
+            <th >本店价</th>
+            <th >赠送积分</th>
+            <th >赠送经验值</th>
+            <th >促销价</th>
+            <th >促销开始时间</th>
+            <th >促销结束时间</th>
+            
+            <th >是否热卖</th>
+            <th >是否新品</th>
+            <th >是否精品</th>
+            <th >是否上架</th>
+            <th >排序数字</th>
+            <th >发布时间</th>
+            <th >库存量</th>
+			<th width="80">操作</th>
+		</tr>
+		
+		<volist name='data' id='vo'>
+		<tr>
+			<td><{$vo.logo|showImage=###,70,60}></td>
+			<td><{$vo.foods_name}></td>
+			<td>
+			<volist name="cate_info" id="val">
+				<if condition="$val['cate_id'] eq $vo['cate_id']" ><{$val.cate_name}></if>
+			</volist>
+			</td>
+			<td>￥:<{$vo.shop_price}></td>
+			<td><{$vo.points}></td>
+			<td><{$vo.xp}></td>
+			<td><if condition="$vo.promote_price eq 0">无<else />￥:<{$vo.promote_price}></if></td>
+			<td>
+			<if condition="$vo.promote_start_time neq 0">
+				<{$vo.promote_start_time|date="Y-m-d H:i:s",###}>
+				<else />
+				无
+			</if>
+			</td>
+			<td>
+			<if condition="$vo.promote_end_time neq 0">
+				<{$vo.promote_end_time|date="Y-m-d H:i:s",###}>
+				<else />
+				无
+			</if>
+			</td>
+			
+			<td>
+			<if condition="$vo.is_hot eq 1">
+				是
+				<else />
+				否
+			</if>
+			</td>
+			<td>
+			<if condition="$vo.is_new eq 1">
+				是
+				<else />
+				否
+			</if>
+			</td>
+			<td><if condition="$vo.is_best eq 1">
+				是
+				<else />
+				否
+			</if></td>
+			<td><if condition="$vo.is_on_sale eq 1">
+				是
+				<else />
+				否
+			</if></td>
+			<td><{$vo.sort_num}></td>
+			
+			<td><{$vo.addtime|date="Y-m-d H:i:s",###}></td>
+			<td><{$vo.inventory}>份</td>
+			<td>
+			<a href="__CONTROLLER__/foodsRestore/foods_id/<{$vo.foods_id}>/p/<{$Think.get.p}>">恢复</a>&nbsp;
+			<a onclick="return confirm('删除后将不可找回,确认删除么？');" href="__CONTROLLER__/foodsDelete/foods_id/<{$vo.foods_id}>/p/<{$Think.get.p}>">
+				删除
+			</a>
+			</td>
+		</tr>
+		</volist>
+		<tr><td colspan='99' class="pages" ><{$page}></td></tr>
+	</table>
+<script>
+$("#start_addtime").datepicker({ dateFormat: "yy-mm-dd" });
+$("#end_addtime").datepicker({ dateFormat: "yy-mm-dd" });
+</script>	

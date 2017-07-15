@@ -1,0 +1,90 @@
+<layout name="Layout/layout" />
+<form name="main_form" method="POST" action="__SELF__" enctype="multipart/form-data" >
+        <table cellspacing="1" cellpadding="3" width="100%">
+        <tr>
+                <td class="label">餐厅名称：</td>
+                
+                <td>
+                <input  type="input" name="restaurant_name" value="<{$rest_info.restaurant_name}>" />
+                </td>
+               
+            </tr>
+            <tr>
+                <td class="label">餐厅负责人：</td>
+                <td>
+                    <input  type="text" name="person_leader" value="<{$rest_info.person_leader}>" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">密码：</td>
+                <td>
+                    <input type="password" name="password" id="password"/>
+                    <span style="color:red">*</span>不填写则表示不修改
+                </td>
+            </tr>
+            <tr style="display: none;" id="cpassword">
+                <td class="label" ">确认密码：</td>
+                <td>
+                    <input type="password" name="cpassword" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">餐厅邮箱	：</td>
+                <td>                  	
+				<input type="text" name="restaurant_email" value="<{$rest_info.restaurant_email}>"/>						   
+                </td>
+            </tr>
+            <tr>
+                <td class="label">餐厅手机：</td>
+                <td>                  	
+				<input type="text" name="restaurant_mobile" value="<{$rest_info.restaurant_mobile}>"/>						   
+                </td>
+            </tr>
+             <tr>
+                <td class="label">餐厅固定号：</td>
+                <td>                  	
+				<input type="text" name="restaurant_tel" value="<{$rest_info.restaurant_tel}>"/>						   
+                </td>
+            </tr>
+             <tr>
+                <td class="label">餐厅地址：</td>
+                <td>                  	
+				<input type="text" name="restaurant_address" value="<{$rest_info.restaurant_address}>"/>						   
+                </td>
+            </tr>
+             <tr>
+                <td class="label">餐厅注册时间：</td>
+                <td>                  	
+				<input type="text" name="addtime" value="<{$rest_info.addtime|date='Y-m-d H:i:s',###}>" disabled="disabled"/>						   
+                </td>
+            </tr>
+            <tr>
+                <td class="label">餐厅logo：</td>
+                <td>                  	
+				<{$rest_info.restaurant_logo|showImage=###,50,50}>
+				<input type="file" name="restaurant_logo" />			   
+                </td>
+            </tr>
+            <tr>
+                <td colspan="99" align="center">
+                    <input type="submit" class="button" value=" 确定 " />
+                    <input type="hidden" name="restaurant_id" value="<{$rest_info.restaurant_id}>">
+                    <input type="reset" class="button" value=" 重置 " />
+                </td>
+            </tr>
+        </table>
+    </form>
+<script type="text/javascript">
+$("#password").focus(function(){
+	
+	  $("#cpassword").css("display","table-row");
+	});
+function changeFace(obj){
+	
+	$('.mem_face').attr('src',$(obj).attr('src'));
+	$('input[name="mem_face"]').val($(obj).attr('src'));
+	
+	
+}
+
+</script>

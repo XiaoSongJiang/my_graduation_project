@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <meta http-equiv='content-type' content="text/html; charset=utf-8" />
+        <link href="__PUBLIC__/Admin/Styles/general.css" type="text/css" rel="stylesheet" />
+        <script type="text/javascript" src="/Public/datepicker/jquery-1.7.2.min.js"></script>
+        
+        <script language=javascript>
+        	$(function(){
+        		
+        		$(".expands").trigger('click');
+        	});
+            function expand(el)
+            {
+                childobj = document.getElementById("child" + el);
+
+                if (childobj.style.display == 'none')
+                {
+                    childobj.style.display = 'block';
+                }
+                else
+                {
+                    childobj.style.display = 'none';
+                }
+                return;
+            }
+        </script>
+        <style>
+			table{
+				background-color:white;
+			}
+		</style>
+    </head>
+    <body style="background-color:#BBDDE5;border: 1px solid #BBDDE5;" >
+        <table height="100%" cellspacing='0' cellpadding='0' width='165px'
+                border='0'>
+               <tr >
+                <td valign='top' align='middle' >
+                <table cellspacing="0px" cellpadding="0px" width="150px" border="0">
+                        <tr height="22px">
+                            <td style="padding-left: 30px" background=/Public/Admin/Images/menu_bt.jpg><a class="expands" 
+                                     onclick="expand(2)" 
+                                    href="javascript:void(0);">菜品管理</a></td></tr>
+                        <tr height="4px">
+                            <td></td></tr></table>
+                            
+			                   <table id="child2" style="display: none" cellspacing="0" cellpadding="0" 
+			                           width="150px" border="0">
+			                          <tr height="20px">
+			                            <td align="middle" width="30px"><img height="9px" 
+			                                                           src="/Public/Admin/Images/menu_icon.gif" width="9px"></td>
+			                            <td class="ext"><a 
+			                                   href="/index.php/Admin/Foods/foodsList" 
+			                                   target="main-frame">菜品列表</a></td></tr><tr height="20px">
+			                            <td align="middle" width="30px"><img height="9px" 
+			                                                           src="/Public/Admin/Images/menu_icon.gif" width="9px"></td>
+			                            <td class="ext"><a 
+			                                   href="__CONTROLLER__/foodsCateList" 
+			                                   target="main-frame">菜品分类列表</a></td></tr><tr height="20px">
+			                            <td align="middle" width="30px"><img height="9px" 
+			                                                           src="/Public/Admin/Images/menu_icon.gif" width="9px"></td>
+			                            <td class="ext"><a 
+			                                   href="/index.php/Admin/Foods/foodsRecycleList" 
+			                                   target="main-frame">菜品回收站</a></td></tr> 
+                             </table><table cellspacing="0px" cellpadding="0px" width="150px" border="0">
+                        <tr height="22px">
+                            <td class="expands" style="padding-left: 30px" background=/Public/Admin/Images/menu_bt.jpg><a class="expands" 
+                                     onclick="expand(3)" 
+                                    href="javascript:void(0);">餐厅管理</a></td></tr>
+                        <tr height="4px">
+                            <td></td></tr></table>
+                            
+			                   <table id="child3" style="display: none" cellspacing="0" cellpadding="0" 
+			                           width="150px" border="0">
+			                           
+			                          <tr height="20px">
+			                            <td align="middle" width="30px"><img height="9px" 
+			                                                           src="/Public/Admin/Images/menu_icon.gif" width="9px"></td>
+			                            <td class="ext"><a 
+			                                   href="__CONTROLLER__/restaurantEdit" 
+			                                   target="main-frame">餐厅基本信息设置</a></td></tr><tr height="20px">
+			                            <td align="middle" width="30px"><img height="9px" 
+			                                                           src="/Public/Admin/Images/menu_icon.gif" width="9px"></td>
+			                            <td class="ext"><a 
+			                                   href="/index.php/Admin/Restaurant/restaurantGuestBookList" 
+			                                   target="main-frame">餐厅留言列表</a></td></tr> <tr height="20px">
+			                            <td align="middle" width="30px"><img height="9px" 
+			                                                           src="/Public/Admin/Images/menu_icon.gif" width="9px"></td>
+			                            <td class="ext"><a 
+			                                   href="/index.php/Admin/Restaurant/restaurantFoodsCommentList" 
+			                                   target="main-frame">菜品评论列表</a></td>
+			                                   </tr> <tr height="20px">
+			                            <td align="middle" width="30px"><img height="9px" 
+			                                                           src="/Public/Admin/Images/menu_icon.gif" width="9px"></td>
+			                            <td class="ext"><a 
+			                                   href="/index.php/Admin/Restaurant/restaurantFoodsCondition" 
+			                                   target="main-frame">总数售卖情况柱状图</a></td>
+			                                   </tr> <tr height="20px">
+			                            <td align="middle" width="30px"><img height="9px" 
+			                                                           src="/Public/Admin/Images/menu_icon.gif" width="9px"></td>
+			                            <td class="ext"><a 
+			                                   href="/index.php/Admin/Restaurant/restaurantFoodsSaleDetail" 
+			                                   target="main-frame">售卖情况详情</a></td>
+			                                   </tr> 
+                             </table>
+                            
+			           
+                    			</td>
+      			</tr>
+      	</table>      
+    </body>
+</html>

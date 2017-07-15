@@ -1,0 +1,76 @@
+<layout name="Layout/layout" />
+<div class="main-div">
+    <form name="main_form" method="POST" action="__SELF__" enctype="multipart/form-data">
+        <table cellspacing="1" cellpadding="3" width="100%">
+            <tr>
+                <td class="label">角色名称：</td>
+                <td>
+                    <input  type="text" name="role_name" value="" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">权限列表：</td>
+                <td>
+                	<volist name="pri_data" id="val">
+                	<{$val.level|str_repeat='&nbsp;&nbsp;&nbsp;&nbsp;',###}><input level="<{$val.level}>" type="checkbox" name="pri_id[]" value="<{$val.pri_id}>" /><{$val.pri_name}> <br />
+                	</volist>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="99" align="center">
+                	
+                    <input type="submit" class="button" value=" 确定 " />
+                    <input type="reset" class="button" value=" 重置 " />
+                </td>
+            </tr>
+        </table>
+      
+    </form>
+</div>
+<script type="text/javascript">
+	$(":checkbox").click(function(){
+		//先取出当前的level值
+		var cur_levevl = $(this).attr("level");
+		//判断当前复选框是否处于选中状态
+		if($(this).attr('checked')){
+			var tmp = cur_levevl;
+			
+			//获得此复选框前面的所有复选框
+			var prev_all = $(this).prevAll(":checkbox");
+			//循环判断prev_all里属于当前复选框的上级复选框
+			$(prev_all).each(function(key,val){
+				if($(val).attr('level')<tmp){
+					tmp--;
+					$(val).attr('checked','checked');
+				}
+			});
+			//选中父级复选框时，子级复选框全部选中
+			//获得此复选框前面的所有复选框
+			var next_all = $(this).nextAll(":checkbox");
+			$(next_all).each(function(key,val){
+				if($(val).attr('level')>cur_levevl){	
+					$(val).attr('checked','checked');
+				}
+				//遇到平级返回
+				else{
+					return false;
+				}
+			});
+		}
+		else{
+			//获得此复选框后面的所有复选框
+			var next_all = $(this).nextAll(":checkbox");
+			
+			$(next_all).each(function(key,val){
+				if($(val).attr('level')>cur_levevl){
+					
+					$(val).removeAttr('checked');
+				}else{
+					return false;
+				}
+			});
+		}
+		
+		
+	});
+</script>

@@ -1,0 +1,36 @@
+<layout name="Layout/layout" />
+
+<!-- 列表 -->
+<div class="list-div" id="listDiv">
+	<table cellpadding="3" cellspacing="1">
+    	<tr>
+            <th >菜品名图片</th>
+            <th >菜品名</th>
+            <th >售卖量</th>
+            <th >售卖时间</th>
+            
+        </tr>
+		<volist name="detail" id="vo">  
+			<volist name="vo" id="val">
+				      
+					<tr>
+						<if condition="$val neq null">  
+							<td align="center"><{$val.logo|showImage=###,"100",'100'}></td>
+							<td align="center"><{$val.foods_name}></td>
+							<td align="center"><{$val.num}></td>
+							<else />
+							<td align="center">无</td>
+							<td align="center">无</td>
+							<td align="center">0</td>
+						</if>
+						
+						<td align="center"><{$val.sales_time|date="Y-m-d",###}></td>
+				       
+			        </tr>
+			        
+		       
+	        </volist>
+        </volist>
+	
+	</table>
+</div>

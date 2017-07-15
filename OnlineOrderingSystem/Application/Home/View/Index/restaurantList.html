@@ -1,0 +1,53 @@
+<layout name="Layout/layout" />
+<include file="layout/header" />
+
+<div class="header w1210 bc mt15">
+			<form action="__MODULE__/Index/restaurantList" method="get">
+			<div class="header w1210 bc mt15 rest_hd">
+				<span><input type="hidden" name="orderby" value="desc" id="desc" disabled="disabled"/><a href="javascript:void(0);" title="销量从高到低" onclick="totalSalesDesc()">销量↓</a></span>
+				<span><input type="hidden" name="orderby" value="asc"  id="asc" disabled="disabled"/><a href="javascript:void(0);" title="销量从底到低" onclick="totalSalesAsc()">销量↑</a></span>
+				<span>店铺名称:</span><input  type="text" placeholder="输入餐厅名进行搜索" name="restaurant_name" value="<{$Think.get.restaurant_name}>"/>
+				<input  type="submit" value="搜索" id="rest_search"/>
+			</div>
+			</form >
+			<div class="rest_hd1 mt10 rest_list">
+			 <volist name="list" id="v" key="k">
+				<table>
+					<tbody>
+						<tr>
+								<td class="col2">
+								<span><a href="__MODULE__/Index/restaurant/restaurant_id/<{$v.restaurant_id}>.html"><{$v.restaurant_logo|showImage=###,50,50}></a> </span>
+								</td>
+								<td class="col1"><a href="__MODULE__/Index/restaurant/restaurant_id/<{$v.restaurant_id}>.html"><{$v.restaurant_name}></a></td>
+								<td class="col3"><span>店主：<{$v.person_leader}></span></td>
+								<td class="col4">菜品总销量：<{$v.totalsales}></td>
+								<td class="col5"><span>餐厅固定电话：<{$v.restaurant_tel}></span></td>
+								<td class="col6"><span>餐厅移动电话：<{$v.restaurant_mobile}></span></td>
+								<td class="col7"><span><{$v.restaurant_address}></span></td>
+								
+						</tr>		
+					</tbody>
+		
+				</table>
+				
+			</volist>
+			
+			</div>
+			<div class="pages mt10" ><{$pages}></div>
+</div>
+			
+<include file="layout/footer" />
+<script>
+
+	function totalSalesDesc(){
+		$("#desc").removeAttr("disabled");
+		$("#asc").attr("disabled",true);
+		$("form").submit();
+	}
+	
+	function totalSalesAsc(obj){
+		$("#asc").removeAttr("disabled");
+		$("#desc").attr("disabled",true);
+		$("form").submit();
+	}
+</script>

@@ -1,0 +1,24 @@
+
+<layout name="Layout/layout" />
+<include file="Layout/header" />
+
+		<div style="width: 1210px;height: 380px;margin:auto;border: 1px solid #E7E7E7;margin-top: 6px;">
+			<ul>
+						<volist name="data" id="v1">
+						<li style="width: 170px;float: left;display: inline;text-align: center;margin-bottom:10px;margin-top: 9px">
+							<dl>
+								<dt><a href="__CONTROLLER__/foods/foods_id/<{$v1.foods_id}>"><{$v1['logo']|showImage=###,130,130}></a></dt>
+								<dd><a href="__CONTROLLER__/foods/foods_id/<{$v1.foods_id}>"><{$v1.foods_name}></a></dd>
+								<dd><span>售价：</span><strong style="color:#D00000"> ￥<{$v1.shop_price}>元</strong></dd>
+							</dl>
+						</li>
+						</volist>
+						
+			</ul>
+			
+		</div>
+		<div style="clear:both;"></div>
+		<div class="pages mt10" id="pages"> <{$page}></div>
+	
+
+<include file="Layout/footer" />

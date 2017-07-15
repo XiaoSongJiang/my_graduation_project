@@ -1,0 +1,167 @@
+/*
+ * 订单列表css
+ */
+.order_list table {
+	border:1px solid;
+	width: 100%;
+}
+.order_list table tr,td{
+	border:1px solid #BFBFBF;
+	
+}
+.order_list thead {
+	background: #ddd;
+	height: 35px;
+	line-height: 35px;
+}
+
+.order_list thead th {
+	text-align: center;
+	font-weight: 500;
+}
+
+.order_list tbody td {
+	text-align: center;
+	border-bottom: 1px dotted #E7E3E7;
+}
+
+.order_list .last td {
+	border-bottom: 0;
+}
+
+.order_list .col1 {
+	width: 139px;
+}
+
+.order_list .col2 {
+	width: 139px;
+}
+
+.order_list .col3 {
+	width: 139px;
+}
+
+.order_list .col4 {
+	width: 139px;
+	
+}
+.order_list .col5 {
+	width: 139px;
+	
+}
+.order_list .col6 {
+	width: 139px;
+	
+}
+.order_list .col7 {
+	width: 139px;
+	
+}
+
+.order_list tbody img {
+	width: 80px;
+	height: 80px;
+	border: 1px solid #eee;
+	vertical-align: middle;
+	margin: 0 auto ; 
+	display: block;
+
+}
+
+.order_list td.col1 {
+	
+	padding: 5px 0 5px 5px;
+}
+
+.order_list td.col1 strong {
+	display: inline-block;
+	
+}
+
+.order_list td.col2 {
+	padding: 0 auto ; 
+}
+.order_list td.col3 {
+	padding: 0 auto ; 
+}
+/**** 翻页的样式 ****/
+span.current {
+	padding: 2px;
+	margin: 2px;
+	background: #F00;
+	color: #FFF;
+	font-weight: bold;
+}
+
+a.num {
+	padding: 2px;
+	border: 0px solid #F00;
+	margin: 2px;
+}
+
+span.required {
+	color: red;
+	font-size: 15px
+}
+
+.pages {
+	text-align: center;
+}
+
+.pages a, .pages span {
+	display: inline-block;
+	padding: 2px 5px;
+	margin: 0 1px;
+	border: 1px solid #f0f0f0;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.pages a, .pages li {
+	display: inline-block;
+	list-style: none;
+	text-decoration: none;
+	color: #192E32;
+}
+
+.pages a.first, .pages a.prev, .pages a.next, .pages a.end {
+	margin: 0;
+}
+
+.pages a:hover {
+	background: red;
+}
+
+.pages span.current {
+	background: #50A8E6;
+	color: #FFF;
+	font-weight: 700;
+	border-color: #50A8E6;
+}
+
+.search_order input{
+	width: 150px; 
+	height:30px;
+	border-width: 1px; 
+	border-style: solid; 
+	border-color:#aaa #ddd #ddd #aaa; 
+	padding: 5px; 
+	padding:0 5px; 
+	margin: 5px 25px 5px 10px;
+}
+#selected_pay{
+	width: 163px; 
+	height:30px;
+	border-width: 1px; 
+	border-style: solid; 
+	border-color:#aaa #ddd #ddd #aaa; 
+	padding: 5px; 
+	padding:0 5px; 
+	margin: 5px 25px 5px 10px;
+}
+#order_submit{
+	background-color: #F5F5F5;
+	margin-left: 50px;
+	width: 100px;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>管理员登录</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__PUBLIC__/Admin/Styles/general.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/Styles/main.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Admin/Styles/login.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" language="javascript" src="__PUBLIC__/datepicker/jquery-1.7.2.min.js"></script>
+</head>
+<body style="background:white">
+<form method="post" action="__CONTROLLER__/login" >
+    <div class="loginbg" id="id_loginbg">
+	<div class="main">
+		<div class="xbox">
+			<li><img src="__PUBLIC__/Admin/Images/ydors.png"></a></li>
+			<li class="xinput">
+			<span class="xname"><i></i><input type="text" name="manager_name"  placeholder="账号"></span>
+			<span class="xpwd"><i></i><input type="password" name="password"  placeholder="密码"></span>
+			<span class="xcode" id="id_verify_code" ><input type="text" name="verifycode" placeholder="验证码"></span>
+			<div class="xcodepic" id="id_verify">
+				<ul>
+				<li><img style="cursor: pointer;" onclick="this.src='__CONTROLLER__/verify#'+Math.random()" src="__CONTROLLER__/verify" id="verify"/>
+                </li>
+                <li>
+                <a href="JavaScript:void(0);" onclick="document.getElementById('verify').src='__CONTROLLER__/verify#'+Math.random()">看不清？换一张</a>
+				</li>
+				</ul>
+			</div>
+			</li>
+			<li><input type="submit" name="btnok" value="登 录" class="xbtn"></li>
+			<li><label><input type="checkbox" name="autologin" value="1" checked>下次自动登录</label></li>
+		</div>
+	</div>
+</div>
+
+</form>

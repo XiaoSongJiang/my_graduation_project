@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <meta http-equiv='content-type' content="text/html; charset=utf-8" /> 
+         <link href="__PUBLIC__/Admin/Styles/general.css" type="text/css" rel="stylesheet" />
+         <style>
+			body {
+				background-color: #DDEEF2;
+			}
+			table {
+				text-align: left;
+				width: 300px;
+			}
+			td{
+				width: 50px;
+				text-align: left;
+			}
+		</style>
+    </head>
+    <body>
+        <table cellspacing='0' cellpadding='0' width="100%" align='center' border='0' >
+            <tr>
+                <td bgcolor='#b1ceef' height='1'></td></tr>
+            <tr height='20'>
+                <td background="red"></td></tr></table>
+        <table cellspacing='0' cellpadding='0' width="90%" align=center border=0>
+            <tr height=100>
+                <td align=middle width=100><img height='100' src="__PUBLIC__/Admin/Images/timg.jpg" 
+                                                width='90'></td>
+                <td width='60'>&nbsp;</td>
+                <td>
+                    <table height='100' cellspacing='0' cellpadding='0' width="100%" border='0'>
+
+                        <tr>
+                            <td>当前时间：<?php echo date("Y-m-d H:i:s")?></td></tr>
+                        <tr>
+                            <td>当前管理员: <b><{$Think.session.manager_name}></b></td></tr>
+                        <tr>
+                            <td>欢迎进入易达在线订餐管理员中心！</td></tr></table></td></tr>
+            </table>
+
+         <div style=" background: #F4FaFb;border: 1px solid #BBDDE5;padding: 10px;color: #9CACAF;margin: 10px 0;text-align: center;">
+			您的相关信息
+		</div>
+        <table cellspacing='0' cellpadding='2' width="95%" align='center' border='0'>
+            <tr>
+                <td align='right' width=100>登陆帐号：</td>
+                <td style="color: #880000"><{$Think.session.manager_name}></td></tr>
+            <tr>
+                <td align='right'>真实姓名：</td>
+                <td style="color: #880000"><{$Think.session.manager_name}></td></tr>
+           <tr>
+                <td align='right'>上线时间：</td>
+                <td style="color: #880000"><?php echo date("Y-m-d H:i:s")?></td></tr>
+            <tr>
+                <td align='right'>ip地址：</td>
+                <td style="color: #880000"><?php echo $_SERVER["HTTP_HOST"] ?></td></tr>
+            <tr>
+                <td align='right'>网站开发qq：</td>
+                <td style="color: #880000">1273398724</td></tr>
+            
+        </table>
+        <div style=" background: #F4FaFb;border: 1px solid #BBDDE5;padding: 15px;color: #9CACAF;margin: 10px 0;text-align: center;">
+			版权所有 &copy; 2017 四川网络科技有限公司，并保留所有权利。
+		</div>
+    </body>
+</html>

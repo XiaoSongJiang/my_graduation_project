@@ -1,0 +1,274 @@
+/*
+填写并确认核对订单页面css
+*/
+.fillin_hd {
+	height: 36px;
+	line-height: 36px;
+	background:#F8F8F8;
+	border: 1px solid #E7E3E7;
+	border-top: 2px solid #CE0000;
+	border-bottom: 0;
+}
+
+.fillin_hd h2 {
+	padding-left: 10px;
+	font-weight: 700;
+	font-size: 16px;
+	font-family: "microsoft yahei";
+	color: #444;
+}
+
+.fillin_bd {
+	width: 958px;
+	border: 1px solid #E7E3E7;
+	border-width: 0 1px;
+	padding: 0 15px;
+	color: #666;
+}
+
+.address, .delivery{
+	width: 958px;
+	padding: 10px 0;
+	border-bottom: 1px dotted #ddd;
+}
+.address li {
+	padding: 4px 0;
+}
+
+.address li a {
+	color: #005aa0;
+}
+
+.address label {
+	float: left;
+	display: inline;
+	width: 70px;
+	position: relative;
+	top: 5px;
+}
+
+.address label span {
+	color: #c30;
+	margin-right: 4px;
+}
+
+.address form li {
+	padding: 5px 0;
+}
+
+.address .txt {
+	width: 250px;
+	height: 18px;
+	padding: 3px;
+	border: 1px solid #ccc;
+}
+
+.address input.address {
+	width: 250px;
+}
+
+.address li.cur {
+	background: #fff4d3;
+}
+
+.confirm_btn {
+	width: 150px; 
+	height: 30px; 
+	background-color: #FC704B;
+	border: 0
+}
+
+.confirm_btn:hover {
+	background-position: 0 -60px;
+}
+
+
+.foods {
+	width: 958px;
+	padding: 10px 0;
+}
+
+.fillin_bd h3 {
+	font-size: 14px;
+	font-weight: bold;
+	height: 36px;
+	line-height: 36px;
+	color: #333;
+}
+
+.fillin_bd p {
+	line-height: 20px;
+}
+
+.fillin_bd h3 a {
+	font-size: 12px;
+	font-weight: 100;
+	color: #005aa0;
+}
+
+.address li {
+	padding: 4px 0;
+}
+
+.address li a {
+	color: #005aa0;
+}
+
+
+
+.delivery_select table {
+	width: 100%;
+}
+
+.delivery_select table td {
+	padding: 4px 0;
+}
+
+.pay_select li {
+	display:block;
+	padding: 4px 0;
+}
+
+
+.pay_select table {
+	width: 100%;
+}
+/*radio效果修正*/
+input[type='radio'] {
+	position: relative;
+	top: 2px;
+	margin-right: 2px;
+}
+
+/*菜品信息css*/
+.foods table {
+	width: 100%;
+}
+
+.foods thead {
+	background: #ddd;
+	height: 35px;
+	line-height: 35px;
+}
+
+.foods thead th {
+	text-align: center;
+	font-weight: 500;
+}
+
+.foods tbody td {
+	text-align: center;
+	border-bottom: 1px dotted #E7E3E7;
+}
+
+.foods .last td {
+	border-bottom: 0;
+}
+
+.foods .col1 {
+	width: 20%;
+}
+
+.foods .col2 {
+	width: 20%;
+}
+
+.foods .col3 {
+	width: 20%;
+}
+
+.foods .col4 {
+	width: 20%;
+	
+}
+.foods .col5 {
+	width: 20%;
+	
+}
+
+.foods tbody img {
+	width: 80px;
+	height: 80px;
+	border: 1px solid #eee;
+	vertical-align: middle;
+	margin: 0 auto ; 
+	display: block;
+
+}
+
+.foods td.col1 {
+	
+	padding: 10px 0 10px 10px;
+}
+
+.foods td.col1 strong {
+	display: inline-block;
+	margin-top: 15px;
+}
+
+.foods td.col2 {
+	padding: 0 auto ; 
+}
+.foods td.col3 {
+	padding: 0 auto ; 
+}
+.foods tfoot td {
+	text-align: right;
+	padding-top: 10px;
+}
+
+.foods tfoot li {
+	line-height: 25px;
+	clear: both;
+}
+
+.foods tfoot li span {
+	width: 100px;
+}
+
+.foods tfoot li em {
+	display: inline-block;
+	width: 50px;
+	text-align: right;
+}
+
+.fillin_ft {
+	width: 988px;
+	height: 50px;
+	background: #f5f5f5;
+	border: 1px solid #E7E3E7;
+	border-top: 0;
+	text-align: right;
+}
+
+.fillin_ft p {
+	font-size: 16px;
+	font-weight: bold;
+	color: #666;
+	float: right;
+	display: inline;
+	line-height: 50px;
+}
+
+.fillin_ft p strong {
+	color: #e4393c;
+	font-family: Verdana, Arial;
+}
+
+.fillin_ft a {
+	float: right;
+	display: inline;
+	width: 135px;
+	height: 36px;
+	background: url("../images/order_btn.jpg") 0 0 no-repeat;
+	vertical-align: middle;
+	margin: 7px 10px 0;
+}
+
+.fillin_ft a span {
+	display: none;
+}
+
+.fillin_ft a:hover {
+	background-position: 0 -36px;
+}

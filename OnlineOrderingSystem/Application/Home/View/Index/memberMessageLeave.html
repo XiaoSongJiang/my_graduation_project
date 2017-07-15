@@ -1,0 +1,255 @@
+<layout name="Layout/layout" />
+
+<!-- 头部 start -->
+	<div class="header w1210 bc mt15">
+		<!-- 头部上半部分 start 包括 logo、搜索-->
+		<div class="logo w1210">
+			<h1 class="fl"><a href="__MODULE__/Index/index.html"><img src="__PUBLIC__/Home/images/logo.png" title="易达在线订餐"></a></h1>
+			<div class="restaurant_name fl"><a href="__MODULE__/Index/restaurant/restaurant_id/<{$Think.get.restaurant_id}>"><{$Think.get.restaurant_name}></a></div>
+			<!-- 头部搜索 start -->
+			<div class="search fr" >
+				<div class="search_form">
+					
+					
+					<form action="__MODULE__/Search/searchFoodsInRest.html" name="serarch" method="get" class="fl" >
+						<input type="hidden" name="restaurant_id" value="<{$restaurant_info.restaurant_id}>">
+						<input type="text" class="txt" placeholder="请输入菜品关键字" name="rest_search_key" value="<{$Think.get.rest_search_key}>"/><input type="submit" class="btn" value="搜索" />
+					</form>
+					
+					
+				</div>
+				
+				<div style="clear:both;"></div>
+			</div>
+			<!-- 头部搜索 end -->
+	</div>
+	<div id="welcome">
+		<img src="__PUBLIC__/Home/Images/welcome.png" width="1210px">
+	</div>
+	<div style="clear:both;"></div>
+
+		<!-- 导航条部分 start -->
+			<div class="nav w1210 bc mt10">
+			<!--  菜品分类部分 start-->
+			<div class="category fl <if condition='$show_nav neq 1'>cat1</if>"> <!-- 非首页，需要添加cat1类 -->
+				<div class="cat_hd <if condition='$show_nav neq 1'>off</if>">  <!-- 注意，首页在此div上只需要添加cat_hd类，非首页，默认收缩分类时添加上off类，鼠标滑过时展开菜单则将off类换成on类 -->
+					<h2>全部菜品分类</h2>
+					<em></em>
+				</div>
+				
+				<div class="cat_bd <if condition='$show_nav neq 1'>none</if>">
+				<!-- 循环顶级分类 -->
+					<foreach name="category_info" item="val" key="i">
+					<div class="cat <if condition='$i eq 0'>item1</if>">
+						<h3><a href=""><{$val.cate_name}></a> <b></b></h3>
+						<div class="cat_detail">
+							<foreach name="val['children']" item="vo" key='j'>
+							<dd class="<if condition='$j eq 0'>dl_1st</if>">
+								<dt><a href=""><{$vo.cate_name}></a></dt>
+							</dd>
+							</foreach>
+						</div>
+					</div>
+					</foreach>
+				
+			</div>
+			<!--  菜品分类部分 end--> 
+			
+		</div>
+		<div class="navitems fl">
+				<ul class="fl">
+					<li><a href="__MODULE__/Index/restaurant/restaurant_id/<{$Think.get.restaurant_id}>.html">首页</a></li>
+					<li><a>顾客留言</a></li>
+				</ul>
+				
+		</div>
+		<!-- 导航条部分 end -->
+</div><br />
+
+<div id="guestbookquery">
+
+	<div class="cap">
+		<div class="au"><strong><font class="auz">留言者</font></strong></div>
+		<div class="gb"><strong><font class="gbz">留言信息</font></strong></div>
+	</div>
+
+<if condition="$guestbook_info['data'] neq ''">
+	<volist name="guestbook_info['data']" id="val" key="k">
+	<div class="guestbook">
+	
+		<div class="auinfo">
+			<div class="aupic"><img src="__PUBLIC__/Home/Images/Face/<{$val.face}>" border="0" width='100' height="100"></div>
+			<div class="auname"><{$val.name}>-<{$val.email}></div>
+			
+			<div class="lynum">第<{$val.gb_id}>条留言</div>
+		</div>
+			
+		<div class="gbinfo">
+			<div class="ttinfo">
+				<div class="title">标题：<{$val.title}></div>
+				<div class="fjinfo"><img src="__PUBLIC__/Home/Images/email.gif" border="0"><a href="mailto:<{$val.email}>">信箱</a>&nbsp;&nbsp;<a target="_blank" href="http://wpa.qq.com/msgrd?V=1&amp;Uin=<{$val.qq}>&amp;Site=&amp;Menu=yes" title=""><img src="__PUBLIC__/Home/Images/qq.gif" border="0">&nbsp;QQ</a></div>
+			</div>
+			<div class="lyinfo">
+				<div class="mood"><img src="__PUBLIC__/Home/Images/mood/<{$val.mood}>.gif" border="0"></div><div class="bdinfo2"><{$val.body}></div>
+			</div>
+			<div class="hfinfo">
+				<div class="hf"  <if condition="$val.ifreply eq 0">style="display:none;"<else />style="display:block;"</if>>餐厅回复：</div>
+				<div class="hfanswer" <if condition="$val.ifreply eq 0">style="display:none;"<else />style="display:block;"</if>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<{$val.reply}></div>
+			</div>
+			<div class="btinfo">
+				<img src="__PUBLIC__/Home/Images/posttime.gif" border="0">&nbsp;&nbsp;<{$val.addtime|date="Y-m-d H:i:s",###}>&nbsp;&nbsp;&nbsp;&nbsp;<img src="__PUBLIC__/Home/Images/ip.gif" border="0">&nbsp;&nbsp;<{$val.ip}>
+			</div>
+		</div>
+		
+	</div>
+</volist>
+	<else />
+	<div style="height: 50px;text-align: center;line-height: 50px ;">暂无留言</div>
+
+</if>
+
+
+</div>
+<div>
+<div class="pages mt20" ><{$guestbook_info.page}></div>	  
+
+</div>
+<br/>
+
+<!-- 留言发布表单 -->
+
+
+<form id="guestbookform" method="post" action="__MODULE__/Index/memberMessageLeave" name="myform">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px #d2d2d2 solid;">
+	<tbody><tr> 
+		<td width="123" height="30" align="right" style="border-right:1px #d2d2d2 solid; border-bottom:1px #d2d2d2 solid;">留言标题：</td>
+      	<td colspan="2" style="border-bottom:1px #d2d2d2 solid; padding-left:5px;"> 
+        	<input type="text" name="title" value="" class="input" maxlength="20" style="width:300px;">&nbsp;<font style="color:#ff0000;">*</font>&nbsp;&nbsp;不得超过 20 个字符		</td>
+      <td width="130" rowspan="4" id="headpic" style="border-bottom:1px #d2d2d2 solid; border-left:1px #d2d2d2 solid; text-align:center;"><img src="__PUBLIC__/Home/Images/Face/1.gif" border="0" id="faceimg"></td>
+	</tr>
+	
+	<tr>
+      <td height="30" align="right" style="border-right:1px #d2d2d2 solid; border-bottom:1px #d2d2d2 solid;">您的名字：</td>
+	  <td style="border-bottom:1px #d2d2d2 solid; padding-left:5px;"><input type="text" name="name" value="" class="input" maxlength="15">&nbsp;<font style="color:#ff0000;">*</font> </td>
+      <td width="160" style="border-bottom:1px #d2d2d2 solid; padding-left:5px;">
+	  	选择头像：
+		<select name="face" id="headpicsel" onchange="$('#faceimg').attr('src','__PUBLIC__/Home/Images/Face/'+$(this).val())  ">
+			<option value="1.gif" selected="selected">face1</option>
+			<option value="2.gif">face2</option>
+			<option value="3.gif">face3</option>
+			<option value="4.gif">face4</option>
+			<option value="5.gif">face5</option>
+			<option value="6.gif">face6</option>
+			<option value="7.gif">face7</option>
+			<option value="8.gif">face8</option>
+			<option value="9.gif">face9</option>
+			
+	  </select></td>
+	</tr>
+	
+	<tr>
+      <td height="30" align="right" style="border-right:1px #d2d2d2 solid; border-bottom:1px #d2d2d2 solid;">电子邮件：</td>
+	  <td colspan="2" style="border-bottom:1px #d2d2d2 solid; padding-left:5px;"><input type="text" name="email" value="" class="input"></td>
+    </tr>
+	
+	<tr>
+      <td height="30" align="right" style="border-right:1px #d2d2d2 solid; border-bottom:1px #d2d2d2 solid;">QQ号码：</td>
+	  <td colspan="2" style="border-bottom:1px #d2d2d2 solid; padding-left:5px;"><input type="text" name="qq" value="" class="input"></td>
+    </tr>
+	
+
+    <tr> 
+    	<td width="123" align="right" style="border-right:1px #d2d2d2 solid; border-bottom:1px #d2d2d2 solid;">当前心情：</td>
+      	<td colspan="3" style="border-bottom:1px #d2d2d2 solid; padding-left:5px;">
+			<ul class="mood">
+				<li><input type="radio" name="mood" value="s1" checked="checked"><img src="__PUBLIC__/Home/Images/mood/s1.gif" border="0"></li>
+				<li><input type="radio" name="mood" value="s2"><img src="__PUBLIC__/Home/Images/mood/s2.gif" border="0"></li>
+				<li><input type="radio" name="mood" value="s3"><img src="__PUBLIC__/Home/Images/mood/s3.gif" border="0"></li>
+				<li><input type="radio" name="mood" value="s4"><img src="__PUBLIC__/Home/Images/mood/s4.gif" border="0"></li>
+				<li><input type="radio" name="mood" value="s5"><img src="__PUBLIC__/Home/Images/mood/s5.gif" border="0"></li>
+				<li><input type="radio" name="mood" value="s6"><img src="__PUBLIC__/Home/Images/mood/s6.gif" border="0"></li>
+				<li><input type="radio" name="mood" value="s7"><img src="__PUBLIC__/Home/Images/mood/s7.gif" border="0"></li>
+				<li><input type="radio" name="mood" value="s8"><img src="__PUBLIC__/Home/Images/mood/s8.gif" border="0"></li>
+				<li><input type="radio" name="mood" value="s9"><img src="__PUBLIC__/Home/Images/mood/s9.gif" border="0"></li>
+				<li><input type="radio" name="mood" value="s10"><img src="__PUBLIC__/Home/Images/mood/s10.gif" border="0"></li>
+			</ul>
+			<ul class="mood">
+				<li><input type="radio" name="mood" value="s11"><img src="__PUBLIC__/Home/Images/mood/s11.gif" border="0"></li>
+				<li><input type="radio" name="mood" value="s12"><img src="__PUBLIC__/Home/Images/mood/s12.gif" border="0"></li>
+				<li><input type="radio" name="mood" value="s13"><img src="__PUBLIC__/Home/Images/mood/s13.gif" border="0"></li>
+				<li><input type="radio" name="mood" value="s14"><img src="__PUBLIC__/Home/Images/mood/s14.gif" border="0"></li>
+				<li><input type="radio" name="mood" value="s15"><img src="__PUBLIC__/Home/Images/mood/s15.gif" border="0"></li>
+				<li><input type="radio" name="mood" value="s16"><img src="__PUBLIC__/Home/Images/mood/s16.gif" border="0"></li>
+				<li><input type="radio" name="mood" value="s17"><img src="__PUBLIC__/Home/Images/mood/s17.gif" border="0"></li>
+				<li><input type="radio" name="mood" value="s18"><img src="__PUBLIC__/Home/Images/mood/s18.gif" border="0"></li>
+				<li><input type="radio" name="mood" value="s19"><img src="__PUBLIC__/Home/Images/mood/s19.gif" border="0"></li>
+				<li><input type="radio" name="mood" value="s20"><img src="__PUBLIC__/Home/Images/mood/s20.gif" border="0"></li>
+			</ul>
+		</td>
+	</tr>
+    <tr>
+      <td height="30" align="right" style="border-right:1px #d2d2d2 solid; border-bottom:1px #d2d2d2 solid;">留言内容：</td>
+      <td colspan="3" style="border-bottom:1px #d2d2d2 solid; padding-left:5px;">
+	  	<div id="remLen" style="float:right; padding-top:10px; padding-right:30px;">您还能填写500个字符</div>
+		<textarea class="textarea" name="body" id="message" style="width:600px; height:60px;" onkeydown="textCounter();" onkeyup="textCounter();"></textarea>&nbsp;<font color="#FF0000">*</font>
+	  </td>
+    </tr>
+
+
+    <tr>
+      <td width="123" height="30" align="right" style="border-right:1px #d2d2d2 solid; border-bottom:1px #d2d2d2 solid;">验 证 码：</td>
+      <td colspan="3" style="border-bottom:1px #d2d2d2 solid; padding-left:5px;">
+	  	<div style="white-space:nowrap; float:left; margin-top:3px;">
+			<input type="text" name="code" style="width:50px;height: 30px" class="input">
+		</div>
+		<div style="cursor:pointer;white-space:nowrap; padding-left:3px; float:left; margin-top:4px;">
+			<img id="codeimg" src="__CONTROLLER__/chkcode" onclick="$(this).attr('src','__CONTROLLER__/chkcode/'+Math.random())" width="50" height="30" style="border:1px #dddddd solid">
+		</div>
+		<div id="getImgCode" style="cursor:pointer;margin-left:10px;line-height:35px" onclick="$(this).prev().find('img').trigger('click')">看不清？更换一张</div>	</td>
+    </tr>
+	<tr> 
+      <td width="123" align="right"></td>
+      <td colspan="3">	  </td>
+    </tr>
+    <tr> 
+      <td width="123" align="right" style="border-right:1px #d2d2d2 solid;">&nbsp;</td>
+      <td height="30" colspan="3" style="padding-left:5px;">
+      	<input type="hidden" name="restaurant_id" value="<{$Think.get.restaurant_id}>" />
+      	<input type="hidden" name="member_id" value="<{$Think.session.member_id}>" id="member_id"/>
+        <input type="button" name="Submit" value="提交" class="submit" id="button_sub">
+        
+    </tr>
+  </tbody></table>
+</form>
+
+
+<script>    
+$("#button_sub").click(function(){
+	
+	if(!$("#member_id").val()){
+		alert("请先登录后 ，再留言！");
+		
+		var rest_id = <{$Think.get.restaurant_id}>;
+		var rest_name= "<{$Think.get.restaurant_name}>";
+		$.cookie("return_url","__MODULE__/Index/memberMessageLeave/restaurant_id/"+rest_id+"/restaurant_name/"+rest_name,{path:'/',domain:'ydors.com'});
+		window.location.href = "__MODULE__/Member/login";
+		
+		return false;
+	}else{
+		$("form").submit();
+	}
+});
+function textCounter(){     
+	if(myform.message.value.length > 500){     
+		myform.message.value = myform.message.value.substring(0, 500); 
+	}else{     
+		document.getElementById("remLen").innerHTML = "您还能填写" + (500 - myform.message.value.length) + "个汉字";     
+	} 
+} 
+</script>
+
+
+
+
+
+<include file="Layout/footer" />
